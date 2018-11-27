@@ -9,8 +9,6 @@ class business{
 		public $id;
 		public $name;
 		public $description;
-		public $head_office;
-		public $branch_name;
 		public $adr_postal;
 		public $adr_location;
 		public $contact_primary_name;
@@ -35,6 +33,7 @@ class business{
 		public $vat;
         public $company_registration;
         public $account_status_id;
+        public $private_client;
 
     public function __construct($db){
         $this->conn = $db;
@@ -49,8 +48,6 @@ class business{
 				SET 
 					name=:name,
 					description=:description,
-					head_office=:head_office,
-					branch_name=:branch_name,
 					adr_postal=:adr_postal,
 					adr_location=:adr_location,
 					contact_primary_name=:contact_primary_name,
@@ -69,7 +66,8 @@ class business{
 					image=:image,
 					vat=:vat,
                     company_registration=:company_registration,
-                    account_status_id=:account_status_id
+                    account_status_id=:account_status_id,
+                    private_client=:private_client
                     ";
 
         $stmt = $this->conn->prepare($query);
@@ -77,8 +75,6 @@ class business{
         // posted values
 		$this->name=htmlspecialchars(strip_tags($this->name));
 		$this->description=htmlspecialchars(strip_tags($this->description));
-		$this->head_office=htmlspecialchars(strip_tags($this->head_office));
-		$this->branch_name=htmlspecialchars(strip_tags($this->branch_name));
 		$this->adr_postal=htmlspecialchars(strip_tags($this->adr_postal));
 		$this->adr_location=htmlspecialchars(strip_tags($this->adr_location));
 		$this->contact_primary_name=htmlspecialchars(strip_tags($this->contact_primary_name));
@@ -98,12 +94,11 @@ class business{
 		$this->vat=htmlspecialchars(strip_tags($this->vat));
         $this->company_registration=htmlspecialchars(strip_tags($this->company_registration));
         $this->account_status_id=htmlspecialchars(strip_tags($this->account_status_id));
+        $this->private_client=htmlspecialchars(strip_tags($this->private_client));
 
         // bind values
 		$stmt->bindParam(":name", $this->name);
 		$stmt->bindParam(":description", $this->description);
-		$stmt->bindParam(":head_office", $this->head_office);
-		$stmt->bindParam(":branch_name", $this->branch_name);
 		$stmt->bindParam(":adr_postal", $this->adr_postal);
 		$stmt->bindParam(":adr_location", $this->adr_location);
 		$stmt->bindParam(":contact_primary_name", $this->contact_primary_name);
@@ -123,6 +118,7 @@ class business{
 		$stmt->bindParam(":vat", $this->vat);
         $stmt->bindParam(":company_registration", $this->company_registration);
         $stmt->bindParam(":account_status_id", $this->account_status_id);
+        $stmt->bindParam(":private_client", $this->private_client);
 
         if($stmt->execute()){
             return true;
@@ -184,8 +180,6 @@ class business{
 		$this->id = $row['id'];
 		$this->name = $row['name'];
 		$this->description = $row['description'];
-		$this->head_office = $row['head_office'];
-		$this->branch_name = $row['branch_name'];
 		$this->adr_postal = $row['adr_postal'];
 		$this->adr_location = $row['adr_location'];
 		$this->contact_primary_name = $row['contact_primary_name'];
@@ -210,6 +204,7 @@ class business{
 		$this->vat = $row['vat'];
         $this->company_registration = $row['company_registration'];
         $this->account_status_id = $row['account_status_id'];
+        $this->private_client = $row['private_client'];
 
     }
 
@@ -264,8 +259,6 @@ class business{
                 SET
 					name=:name,
 					description=:description,
-					head_office=:head_office,
-					branch_name=:branch_name,
 					adr_postal=:adr_postal,
 					adr_location=:adr_location,
 					contact_primary_name=:contact_primary_name,
@@ -283,7 +276,8 @@ class business{
 					contact_business_youtube=:contact_business_youtube,
 					vat=:vat,
                     company_registration=:company_registration,
-                    account_status_id=:account_status_id
+                    account_status_id=:account_status_id,
+                    private_client=:private_client
                 WHERE
                     id = :id";
         
@@ -293,8 +287,6 @@ class business{
 		$this->id=htmlspecialchars(strip_tags($this->id));
 		$this->name=htmlspecialchars(strip_tags($this->name));
 		$this->description=htmlspecialchars(strip_tags($this->description));
-		$this->head_office=htmlspecialchars(strip_tags($this->head_office));
-		$this->branch_name=htmlspecialchars(strip_tags($this->branch_name));
 		$this->adr_postal=htmlspecialchars(strip_tags($this->adr_postal));
 		$this->adr_location=htmlspecialchars(strip_tags($this->adr_location));
 		$this->contact_primary_name=htmlspecialchars(strip_tags($this->contact_primary_name));
@@ -313,13 +305,12 @@ class business{
 		$this->vat=htmlspecialchars(strip_tags($this->vat));
         $this->company_registration=htmlspecialchars(strip_tags($this->company_registration));
         $this->account_status_id=htmlspecialchars(strip_tags($this->account_status_id));
+        $this->private_client=htmlspecialchars(strip_tags($this->private_client));
 
         // bind values
 		$stmt->bindParam(":id", $this->id);
 		$stmt->bindParam(":name", $this->name);
 		$stmt->bindParam(":description", $this->description);
-		$stmt->bindParam(":head_office", $this->head_office);
-		$stmt->bindParam(":branch_name", $this->branch_name);
 		$stmt->bindParam(":adr_postal", $this->adr_postal);
 		$stmt->bindParam(":adr_location", $this->adr_location);
 		$stmt->bindParam(":contact_primary_name", $this->contact_primary_name);
@@ -338,6 +329,7 @@ class business{
 		$stmt->bindParam(":vat", $this->vat);
         $stmt->bindParam(":company_registration", $this->company_registration);
         $stmt->bindParam(":account_status_id", $this->account_status_id);
+        $stmt->bindParam(":private_client", $this->private_client);
 
         // execute the query
         if ($stmt->execute()){

@@ -45,8 +45,7 @@ if($_POST){
     // set business property values
 	$business->name = $_POST['name'];
 	$business->description = $_POST['description'];
-	$business->head_office = $_POST['head_office'];
-	$business->branch_name = $_POST['branch_name'];
+
 	$business->adr_postal = $_POST['adr_postal'];
 	$business->adr_location = $_POST['adr_location'];
 	$business->contact_primary_name = $_POST['contact_primary_name'];
@@ -70,6 +69,7 @@ if($_POST){
 	$business->vat = $_POST['vat'];
 	$business->company_registration = $_POST['company_registration'];
 	$business->account_status_id = $_POST['account_status_id'];
+	$business->private_client = $_POST['private_client'];
 
     // create the business
     if($business->create()){
@@ -101,16 +101,6 @@ if($_POST){
 	<tr>
 		<td>Description</td>
 		<td><input type='text' name='description' class='form-control' maxlength="255" /></td>
-	</tr>
-
-	<tr>
-		<td>Head Office</td>
-		<td><input type='text' name='head_office' class='form-control' value='1' maxlength="@@@" /></td>
-	</tr>
-
-	<tr>
-		<td>Branch Name</td>
-		<td><input type='text' name='branch_name' class='form-control' maxlength="50" /></td>
 	</tr>
 
 	<tr>
@@ -225,6 +215,11 @@ if($_POST){
 
         </td>
     </tr>
+
+	<tr>
+		<td>Private Client</td>
+		<td><input type='text' name='private_client' class='form-control' /></td>
+	</tr>
 
         <tr>
             <td></td>

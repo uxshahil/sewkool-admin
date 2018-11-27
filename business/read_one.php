@@ -61,16 +61,6 @@ echo "<table class='table table-hover table-responsive table-bordered box'>";
 	echo "</tr>";
 
 	echo "<tr>";
-		echo "<td>Head Office</td>";
-		echo "<td>{$business->head_office}</td>";
-	echo "</tr>";
-
-	echo "<tr>";
-		echo "<td>Branch Name</td>";
-		echo "<td>{$business->branch_name}</td>";
-	echo "</tr>";
-
-	echo "<tr>";
 		echo "<td>Address - Postal</td>";
 		echo "<td>{$business->adr_postal}</td>";
 	echo "</tr>";
@@ -190,6 +180,11 @@ echo "<table class='table table-hover table-responsive table-bordered box'>";
 	echo "<tr>";
 		echo "<td>Account Status ID</td>";
 		echo "<td>{$business->account_status_id}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Private Client</td>";
+		echo "<td>{$business->private_client}</td>";
 	echo "</tr>";
 
 echo "</table>";

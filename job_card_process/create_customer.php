@@ -20,8 +20,6 @@ if($_POST){
     // set business property values
 	$business->name = $_POST['name'];
 	$business->description = $_POST['description'];
-	$business->head_office = $_POST['head_office'];
-	$business->branch_name = $_POST['branch_name'];
 	$business->adr_postal = $_POST['adr_postal'];
 	$business->adr_location = $_POST['adr_location'];
 	$business->contact_primary_name = $_POST['contact_primary_name'];
