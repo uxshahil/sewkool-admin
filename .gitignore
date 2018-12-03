@@ -2,3 +2,5 @@
 **/uploads
 /EditableInvoice
 *.pdf
+.htaccess
+/config
