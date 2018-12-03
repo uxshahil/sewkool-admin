@@ -32,11 +32,7 @@ class user{
 		public $adr_line_3;
 		public $adr_code;
 		public $province_id;
-		public $permission_super_admin = 0;
-		public $permission_admin = 0;
-		public $permission_user = 0;
 		public $image;
-		public $permission_finance = 0;
 		public $department;
 		public $created_date;
 		public $created_by;
@@ -126,11 +122,7 @@ class user{
 					adr_line_3=:adr_line_3,
 					adr_code=:adr_code,
 					province_id=:province_id,
-					permission_super_admin=:permission_super_admin,
-					permission_admin=:permission_admin,
-					permission_user=:permission_user,
 					image=:image,
-					permission_finance=:permission_finance,
 					department=:department
                     ";
 
@@ -162,11 +154,7 @@ class user{
 		$this->adr_line_3=htmlspecialchars(strip_tags($this->adr_line_3));
 		$this->adr_code=htmlspecialchars(strip_tags($this->adr_code));
 		$this->province_id=htmlspecialchars(strip_tags($this->province_id));
-		$this->permission_super_admin=htmlspecialchars(strip_tags($this->permission_super_admin));
-		$this->permission_admin=htmlspecialchars(strip_tags($this->permission_admin));
-		$this->permission_user=htmlspecialchars(strip_tags($this->permission_user));
 		$this->image=htmlspecialchars(strip_tags($this->image));
-		$this->permission_finance=htmlspecialchars(strip_tags($this->permission_finance));
 		$this->department=htmlspecialchars(strip_tags($this->department));
 
         // bind values
@@ -199,11 +187,7 @@ class user{
 		$stmt->bindParam(":adr_line_3", $this->adr_line_3);
 		$stmt->bindParam(":adr_code", $this->adr_code);
 		$stmt->bindParam(":province_id", $this->province_id);
-		$stmt->bindParam(":permission_super_admin", $this->permission_super_admin);
-		$stmt->bindParam(":permission_admin", $this->permission_admin);
-		$stmt->bindParam(":permission_user", $this->permission_user);
 		$stmt->bindParam(":image", $this->image);
-		$stmt->bindParam(":permission_finance", $this->permission_finance);
 		$stmt->bindParam(":department", $this->department);
 
         if($stmt->execute()){
@@ -414,11 +398,7 @@ class user{
 		$this->adr_line_3 = $row['adr_line_3'];
 		$this->adr_code = $row['adr_code'];
 		$this->province_id = $row['province_id'];
-		$this->permission_super_admin = $row['permission_super_admin'];
-		$this->permission_admin = $row['permission_admin'];
-		$this->permission_user = $row['permission_user'];
 		$this->image = $row['image'];
-		$this->permission_finance = $row['permission_finance'];
 		$this->department = $row['department'];
 		$this->created_date = $row['created_date'];
 		$this->created_by = $row['created_by'];
@@ -458,11 +438,7 @@ class user{
 					adr_line_3=:adr_line_3,
 					adr_code=:adr_code,
 					province_id=:province_id,
-					permission_super_admin=:permission_super_admin,
-					permission_admin=:permission_admin,
-					permission_user=:permission_user,
 					image=:image,
-					permission_finance=:permission_finance,
 					department=:department
                 WHERE
                     id = :id";
@@ -488,11 +464,7 @@ class user{
 		$this->adr_line_3=htmlspecialchars(strip_tags($this->adr_line_3));
 		$this->adr_code=htmlspecialchars(strip_tags($this->adr_code));
 		$this->province_id=htmlspecialchars(strip_tags($this->province_id));
-		$this->permission_super_admin=htmlspecialchars(strip_tags($this->permission_super_admin));
-		$this->permission_admin=htmlspecialchars(strip_tags($this->permission_admin));
-		$this->permission_user=htmlspecialchars(strip_tags($this->permission_user));
 		$this->image=htmlspecialchars(strip_tags($this->image));
-		$this->permission_finance=htmlspecialchars(strip_tags($this->permission_finance));
 		$this->department=htmlspecialchars(strip_tags($this->department));
 
         // bind values
@@ -523,11 +495,7 @@ class user{
 		$stmt->bindParam(":adr_line_3", $this->adr_line_3);
 		$stmt->bindParam(":adr_code", $this->adr_code);
 		$stmt->bindParam(":province_id", $this->province_id);
-		$stmt->bindParam(":permission_super_admin", $this->permission_super_admin);
-		$stmt->bindParam(":permission_admin", $this->permission_admin);
-		$stmt->bindParam(":permission_user", $this->permission_user);
 		$stmt->bindParam(":image", $this->image);
-		$stmt->bindParam(":permission_finance", $this->permission_finance);
 		$stmt->bindParam(":department", $this->department);
 
         // execute the query

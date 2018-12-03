@@ -129,32 +129,12 @@ echo "<table class='table table-hover table-responsive table-bordered box'>";
 		echo "<td>{$user->province_id}</td>";
 	echo "</tr>";
 
-	echo "<tr>";
-		echo "<td>Permission - Super Admin</td>";
-		echo "<td>{$user->permission_super_admin}</td>";
-	echo "</tr>";
-
-	echo "<tr>";
-		echo "<td>Permission - Admin</td>";
-		echo "<td>{$user->permission_admin}</td>";
-	echo "</tr>";
-
-	echo "<tr>";
-		echo "<td>Permission - User</td>";
-		echo "<td>{$user->permission_user}</td>";
-	echo "</tr>";
-
     echo "<tr>";
         echo "<td>Image</td>";
         echo "<td>";
             echo $user->image ? "<img src='uploads/{$user->image}' style='width:300px;' />" : "No image found.";
         echo "</td>";
     echo "</tr>";
-
-	echo "<tr>";
-		echo "<td>Permission - Finance</td>";
-		echo "<td>{$user->permission_finance}</td>";
-	echo "</tr>";
 
 	echo "<tr>";
 		echo "<td>Department</td>";

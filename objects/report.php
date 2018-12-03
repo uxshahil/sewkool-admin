@@ -81,4 +81,63 @@ class report{
         $stmt->execute();
         return $stmt;
     }
+
+    function dashboardReportAssignedToUsers(){
+        $query = " SELECT DISTINCT 
+                    u.id, 
+                    u.first_name, 
+                    u.last_name 
+                FROM 
+                    `user` u 
+                LEFT JOIN 
+                    `job_card` j
+                        ON 
+                            j.assigned_to = u.id
+                LEFT JOIN 
+                    `status` s
+                        ON 
+                            j.job_card_status_id = s.id
+                WHERE 
+                    j.assigned_to IS NOT NULL 
+                        AND 
+                            (s.title = 'Awaiting Production' OR s.title = 'Production')";
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+        return $stmt;
+    }
+
+    function dashboardReportUser($status, $user){
+        $query = "SELECT 
+                    j.id AS 'Job Card No', 
+                    b.name AS 'Client', 
+                    bb.name AS 'Customer', 
+                    u.first_name AS 'Assigned To', 
+                    j.qty_verify_customer AS 'Qty'
+                FROM 
+                    job_card j
+                LEFT JOIN 
+                    `status` s 
+                        ON 
+                        j.job_card_status_id = s.id  
+                LEFT JOIN 
+                    `business` b
+                        ON 
+                        j.client_business_id = b.id
+                LEFT JOIN 
+                    `user` u
+                        ON 
+                        j.assigned_to = u.id
+                LEFT JOIN 
+                    `business` bb
+                        ON 
+                        j.customer_business_id = bb.id
+                WHERE 
+                    s.title = ? AND u.id = ?";
+
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(1, $status);
+        $stmt->bindParam(2, $user);
+        $stmt->execute();
+        return $stmt;
+    }
 }

@@ -57,10 +57,6 @@ if($_POST){
 	$user->adr_line_3 = $_POST['adr_line_3'];
 	$user->adr_code = $_POST['adr_code'];
 	$user->province_id = $_POST['province_id'];
-	$user->permission_super_admin = $_POST['permission_super_admin'];
-	$user->permission_admin = $_POST['permission_admin'];
-	$user->permission_user = $_POST['permission_user'];
-	$user->permission_finance = $_POST['permission_finance'];
 	$user->department = $_POST['department'];
 
 // update the user
@@ -165,26 +161,6 @@ if($_POST){
 		<tr>
 			<td>Province ID</td>
 			<td><input type='text' name='province_id' value='<?php echo $user->province_id; ?>' class='form-control' /></td>
-		</tr>
-
-		<tr>
-			<td>Permission - Super Admin</td>
-			<td><input type='text' name='permission_super_admin' value='<?php echo $user->permission_super_admin; ?>' class='form-control' /></td>
-		</tr>
-
-		<tr>
-			<td>Permission - Admin</td>
-			<td><input type='text' name='permission_admin' value='<?php echo $user->permission_admin; ?>' class='form-control' /></td>
-		</tr>
-
-		<tr>
-			<td>Permission - User</td>
-			<td><input type='text' name='permission_user' value='<?php echo $user->permission_user; ?>' class='form-control' /></td>
-		</tr>
-
-		<tr>
-			<td>Permission - Finance</td>
-			<td><input type='text' name='permission_finance' value='<?php echo $user->permission_finance; ?>' class='form-control' /></td>
 		</tr>
 
 		<tr>

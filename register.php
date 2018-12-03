@@ -49,7 +49,7 @@ echo "<div class='col-md-12'>";
             $user->contact_number=$_POST['contact_number'];
             $user->address=$_POST['address'];
             $user->password=$_POST['password'];
-            $user->access_level='Customer';
+            $user->access_level='User';
             $user->status=0;
 
             // access code for email verification

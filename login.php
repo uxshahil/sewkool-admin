@@ -49,7 +49,7 @@ if($_POST){
             header("Location: {$home_url}index.php?action=login_success");
         }
     
-        // else, redirect only to 'Customer' section
+        // else, redirect only to 'User' section
         else{
             header("Location: {$home_url}index.php?action=login_success");
         }

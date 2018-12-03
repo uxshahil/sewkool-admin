@@ -1,5 +1,5 @@
 <?php
-// login checker for 'customer' access level
+// login checker for 'User' access level
 
 // if access level was not 'Admin', redirect him to login page
 /*if(isset($_SESSION['access_level']) && $_SESSION['access_level']=="Admin"){
@@ -14,10 +14,10 @@ if(isset($require_login) && $require_login==true){
     }
 }
 
-// if it was the 'login' or 'register' or 'sign-up' page but the customer was already logged in
+// if it was the 'login' or 'register' or 'sign-up' page but the user was already logged in
 else if(isset($page_title) && ($page_title=="Login" || $page_title=="Sign Up")){
     // if user not yet logged in, redirect to login page
-    if(isset($_SESSION['access_level']) && $_SESSION['access_level']=="Customer"){
+    if(isset($_SESSION['access_level']) && $_SESSION['access_level']=="User"){
         header("Location: {$home_url}index.php?action=already_logged_in");    
     }
     else if(isset($_SESSION['access_level']) && $_SESSION['access_level']=="Admin"){

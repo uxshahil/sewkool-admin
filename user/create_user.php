@@ -48,15 +48,11 @@ if($_POST){
 	$user->adr_line_3 = $_POST['adr_line_3'];
 	$user->adr_code = $_POST['adr_code'];
 	$user->province_id = $_POST['province_id'];
-	$user->permission_super_admin = $_POST['permission_super_admin'];
-	$user->permission_admin = $_POST['permission_admin'];
-	$user->permission_user = $_POST['permission_user'];
 
 	$image=!empty($_FILES["image"]["name"])
 		? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES["image"]["name"]) : "";
 	$user->image = $image;
 	
-	$user->permission_finance = $_POST['permission_finance'];
 	$user->department = $_POST['department'];
 
     // create the user
@@ -167,28 +163,8 @@ if($_POST){
 	</tr>
 
 	<tr>
-		<td>Permission - Super Admin</td>
-		<td><input type='text' name='permission_super_admin' class='form-control' /></td>
-	</tr>
-
-	<tr>
-		<td>Permission - Admin</td>
-		<td><input type='text' name='permission_admin' class='form-control' /></td>
-	</tr>
-
-	<tr>
-		<td>Permission - User</td>
-		<td><input type='text' name='permission_user' class='form-control' /></td>
-	</tr>
-
-	<tr>
 		<td>Photo</td>
 		<td><input type="file" name="image" /></td>
-	</tr>
-
-	<tr>
-		<td>Permission - Finance</td>
-		<td><input type='text' name='permission_finance' class='form-control' /></td>
 	</tr>
 
 	<tr>

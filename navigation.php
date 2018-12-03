@@ -18,9 +18,9 @@
         <div class="navbar-collapse collapse">
             
             <?php
-            // check if users / customer was logged in
+            // check if users / User was logged in
             // if user was logged in, show "Edit Profile", "Orders" and "Logout" options
-            if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true && $_SESSION['access_level']=='Customer'){
+            if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']==true && $_SESSION['access_level']=='User'){
                 ?>
 
                     <ul class="nav navbar-nav">

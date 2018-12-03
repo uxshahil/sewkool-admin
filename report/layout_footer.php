@@ -13,5 +13,17 @@
 <!-- JavaScript validators -->
 <script src="../libs/js/validators.js"></script>
 
+<script>
+    var slides = document.querySelectorAll('#slides .slide');
+    var currentSlide = 0;
+    var slideInterval = setInterval(nextSlide,3000);
+
+    function nextSlide() {
+        slides[currentSlide].className = 'row slide';
+        currentSlide = (currentSlide+1)%slides.length;
+        slides[currentSlide].className = 'row slide showing';
+    }
+</script>
+
 </body>
 </html>
