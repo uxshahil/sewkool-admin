@@ -36,8 +36,6 @@ echo "<div class='col-md-12'>";
  
 echo "</div>";
 
-include_once 'report/status.php';
- 
 // footer HTML and JavaScript codes
 include 'layout_foot.php';
 ?>

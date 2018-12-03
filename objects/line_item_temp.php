@@ -19,12 +19,14 @@ class line_item_temp{
         public $price_artwork;
         public $price_setup;
         public $price_embroidery;
-        public $fulfilled;
         public $created_date;
         public $created_by;
         public $modified_date;
         public $modified_by;
         public $row_source;
+        public $item_qty_quality_pass;
+		public $item_qty_quality_not_pass;
+		public $item_qty_quality_info;
 
     public function __construct($db){
         $this->conn = $db;
@@ -49,7 +51,9 @@ class line_item_temp{
 					price_artwork=:price_artwork,
                     price_setup=:price_setup,
                     price_embroidery=:price_embroidery,
-					fulfilled=:fulfilled
+                    item_qty_quality_pass=:item_qty_quality_pass,
+                    item_qty_quality_not_pass=:item_qty_quality_not_pass,
+                    item_qty_quality_info=:item_qty_quality_info
                     ";
 
         $stmt = $this->conn->prepare($query);
@@ -67,7 +71,9 @@ class line_item_temp{
 		$this->price_artwork=htmlspecialchars(strip_tags($this->price_artwork));
         $this->price_setup=htmlspecialchars(strip_tags($this->price_setup));
         $this->price_embroidery=htmlspecialchars(strip_tags($this->price_embroidery));
-		$this->fulfilled=htmlspecialchars(strip_tags($this->fulfilled));
+        $this->item_qty_quality_pass=htmlspecialchars(strip_tags($this->item_qty_quality_pass));
+        $this->item_qty_quality_not_pass=htmlspecialchars(strip_tags($this->item_qty_quality_not_pass));
+        $this->item_qty_quality_info=htmlspecialchars(strip_tags($this->item_qty_quality_info));
 
         // bind values
 		$stmt->bindParam(":job_card_id", $this->job_card_id);
@@ -82,8 +88,10 @@ class line_item_temp{
 		$stmt->bindParam(":price_artwork", $this->price_artwork);
         $stmt->bindParam(":price_setup", $this->price_setup);
         $stmt->bindParam(":price_embroidery", $this->price_embroidery);
-		$stmt->bindParam(":fulfilled", $this->fulfilled);
-
+        $stmt->bindParam(":item_qty_quality_pass", $this->item_qty_quality_pass);
+        $stmt->bindParam(":item_qty_quality_not_pass", $this->item_qty_quality_not_pass);
+        $stmt->bindParam(":item_qty_quality_info", $this->item_qty_quality_info);
+        
         if($stmt->execute()){
             return true;
         }else{
@@ -150,12 +158,14 @@ class line_item_temp{
 		$this->price_artwork = $row['price_artwork'];
         $this->price_setup = $row['price_setup'];
         $this->price_embroidery = $row['price_embroidery'];
-		$this->fulfilled = $row['fulfilled'];
 		$this->created_date = $row['created_date'];
 		$this->created_by = $row['created_by'];
 		$this->modified_date = $row['modified_date'];
 		$this->modified_by = $row['modified_by'];
-		$this->row_source = $row['row_source'];
+        $this->row_source = $row['row_source'];
+        $this->item_qty_quality_pass = $row['item_qty_quality_pass'];
+		$this->item_qty_quality_not_pass = $row['item_qty_quality_not_pass'];
+		$this->item_qty_quality_info = $row['item_qty_quality_info'];
 
     }
     
@@ -176,7 +186,9 @@ class line_item_temp{
 					price_artwork=:price_artwork,
                     price_setup=:price_setup,
                     price_embroidery=:price_embroidery,
-					fulfilled=:fulfilled
+                    item_qty_quality_pass=:item_qty_quality_pass,
+                    item_qty_quality_not_pass=:item_qty_quality_not_pass,
+                    item_qty_quality_info=:item_qty_quality_info
                 WHERE
                     id = :id";
         
@@ -196,7 +208,9 @@ class line_item_temp{
 		$this->price_artwork=htmlspecialchars(strip_tags($this->price_artwork));
         $this->price_setup=htmlspecialchars(strip_tags($this->price_setup));
         $this->price_embroidery=htmlspecialchars(strip_tags($this->price_embroidery));
-		$this->fulfilled=htmlspecialchars(strip_tags($this->fulfilled));
+        $this->item_qty_quality_pass=htmlspecialchars(strip_tags($this->item_qty_quality_pass));
+        $this->item_qty_quality_not_pass=htmlspecialchars(strip_tags($this->item_qty_quality_not_pass));
+        $this->item_qty_quality_info=htmlspecialchars(strip_tags($this->item_qty_quality_info));
 
         // bind values
 		$stmt->bindParam(":id", $this->id);
@@ -212,8 +226,10 @@ class line_item_temp{
 		$stmt->bindParam(":price_artwork", $this->price_artwork);
         $stmt->bindParam(":price_setup", $this->price_setup);
         $stmt->bindParam(":price_embroidery", $this->price_embroidery);
-		$stmt->bindParam(":fulfilled", $this->fulfilled);
-
+        $stmt->bindParam(":item_qty_quality_pass", $this->item_qty_quality_pass);
+        $stmt->bindParam(":item_qty_quality_not_pass", $this->item_qty_quality_not_pass);
+        $stmt->bindParam(":item_qty_quality_info", $this->item_qty_quality_info);
+        
         // execute the query
         if ($stmt->execute()){
             return true;

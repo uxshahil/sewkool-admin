@@ -44,6 +44,7 @@ if($_POST){
     
     // set business property values
 	$business->name = $_POST['name'];
+	$business->private_client = $_POST['private_client'];
 	$business->description = $_POST['description'];
 
 	$business->adr_postal = $_POST['adr_postal'];
@@ -68,9 +69,7 @@ if($_POST){
 	
 	$business->vat = $_POST['vat'];
 	$business->company_registration = $_POST['company_registration'];
-	$business->account_status_id = $_POST['account_status_id'];
-	$business->private_client = $_POST['private_client'];
-
+	
     // create the business
     if($business->create()){
         echo "<div class='alert alert-success'>Business was created.</div>";
@@ -96,6 +95,11 @@ if($_POST){
 	<tr>
 		<td>Name</td>
 		<td><input type='text' name='name' class='form-control' maxlength="50" /></td>
+	</tr>
+
+	<tr>
+		<td>Private Client</td>
+		<td><input type='text' name='private_client' class='form-control' /></td>
 	</tr>
 
 	<tr>
@@ -191,34 +195,6 @@ if($_POST){
 	<tr>
 		<td>Company Registration</td>
 		<td><input type='text' name='company_registration' class='form-control' maxlength = "25" onchange="validateNumericOnly(document.business_form.company_registration, 'company_registration')"/></td>
-	</tr>
-
-    <tr>
-        <td>Account Status</td>
-        <td>
-        
-        <?php
-        // read the product categories from the database
-        $stmt = $status->readParentStatus('Business', 'account_status_id');
-        
-        // put them in a select drop-down
-        echo "<select id='account_status_id' class='form-control' name='account_status_id'>";
-            echo "<option>Select status...</option>";
-
-            while ($row_status = $stmt->fetch(PDO::FETCH_ASSOC)){
-                extract($row_status);
-                echo "<option value='{$id}'>{$title}</option>";
-            }
-
-        echo "</select>";
-        ?>
-
-        </td>
-    </tr>
-
-	<tr>
-		<td>Private Client</td>
-		<td><input type='text' name='private_client' class='form-control' /></td>
 	</tr>
 
         <tr>

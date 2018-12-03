@@ -140,7 +140,7 @@ $page_title = "Print Invoice";
 
 				<tr>
 					<td colspan="12" style="text-align:center;">
-						<span><strong>Invoice</strong></span>
+						<span><strong>Tax Invoice</strong></span>
 					</td>
 				</tr>
 
@@ -305,8 +305,8 @@ $page_title = "Print Invoice";
 
 				<tr>
 					<td colspan="12" style="text-align:center;">
-						<span>If you have any questions concerning this receipt, please contact</span> <br>
-						<span>Mobile No: 082 333 4546</span> <br>
+						<span>If you have any questions concerning this invoice, please contact us on</span> <br>
+						<span>043 743 4712</span> <br>
 						<span>THANK YOU FOR YOUR BUSINESS</span>
 					</td>		
 				</tr>

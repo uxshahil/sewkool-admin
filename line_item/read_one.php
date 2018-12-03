@@ -107,11 +107,6 @@ echo "<table class='table table-hover table-responsive table-bordered box'>";
 	echo "</tr>";
 
 	echo "<tr>";
-		echo "<td>Fulfilled</td>";
-		echo "<td>{$line_item->fulfilled}</td>";
-	echo "</tr>";
-
-	echo "<tr>";
 		echo "<td>Created - Date</td>";
 		echo "<td>{$line_item->created_date}</td>";
 	echo "</tr>";
@@ -134,6 +129,21 @@ echo "<table class='table table-hover table-responsive table-bordered box'>";
 	echo "<tr>";
 		echo "<td>Row Source</td>";
 		echo "<td>{$line_item->row_source}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Item - Quality Pass</td>";
+		echo "<td>{$line_item->item_qty_quality_pass}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Item - Quality Not Pass</td>";
+		echo "<td>{$line_item->item_qty_quality_not_pass}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Item - Quality Info</td>";
+		echo "<td>{$line_item->item_qty_quality_info}</td>";
 	echo "</tr>";
 
 echo "</table>";

@@ -47,7 +47,10 @@ if($_POST){
 	$line_item->price_artwork = $_POST['price_artwork'];
 	$line_item->price_setup = $_POST['price_setup'];
 	$line_item->price_embroidery = $_POST['price_embroidery'];
-	$line_item->fulfilled = $_POST['fulfilled'];
+
+	$line_item->item_qty_quality_pass = $_POST['item_qty_quality_pass'];
+	$line_item->item_qty_quality_not_pass = $_POST['item_qty_quality_not_pass'];
+	$line_item->item_qty_quality_info = $_POST['item_qty_quality_info'];
 
     // create the line_item
     if($line_item->create()){
@@ -132,8 +135,18 @@ if($_POST){
 		</tr>
 
 		<tr>
-			<td>Fulfilled</td>
-			<td><input type='text' name='fulfilled' class='form-control' /></td>
+			<td>Item - Quality Pass</td>
+			<td><input type='text' name='item_qty_quality_pass' class='form-control' /></td>
+		</tr>
+
+		<tr>
+			<td>Item - Quality Not Pass</td>
+			<td><input type='text' name='item_qty_quality_not_pass' class='form-control' /></td>
+		</tr>
+
+		<tr>
+			<td>Item - Quality Info</td>
+			<td><input type='text' name='item_qty_quality_info' class='form-control' /></td>
 		</tr>
 
 		<tr>

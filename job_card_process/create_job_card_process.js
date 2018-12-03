@@ -4,8 +4,10 @@ window.onload = checkCookie(), calculateSubTotal(), calculateInvoiceTotal();
 function setCookie(){
     document.cookie = "client_business_id = " + document.getElementById("client_business_id").selectedIndex;
     document.cookie = "customer_business_id = " + document.getElementById("customer_business_id").selectedIndex;
-    document.cookie = "job_card_status_id = " + document.getElementById("job_card_status_id").selectedIndex;
     document.cookie = "date_due = " + document.getElementById("date_due").value;
+    document.cookie = "client_invoice_number = " + document.getElementById("client_invoice_number").value;
+    document.cookie = "skip_artwork = " + document.getElementById("skip_artwork").value;
+    document.cookie = "qty_verify_customer = " + document.getElementById("qty_verify_customer").value;
 }
 
 function getCookie(cname) {
@@ -27,8 +29,10 @@ function getCookie(cname) {
 function checkCookie() {
     setDropDownIndex("client_business_id", getCookie("client_business_id"));
     setDropDownIndex("customer_business_id", getCookie("customer_business_id"));
-    setDropDownIndex("job_card_status_id", getCookie("job_card_status_id"));
+    document.getElementById("client_invoice_number").value = getCookie("client_invoice_number");
     document.getElementById("date_due").value = getCookie("date_due");
+    setDropDownIndex("skip_artwork", getCookie("skip_artwork"));
+    document.getElementById("qty_verify_customer").value = getCookie("qty_verify_customer");
 }
 
 function setDropDownIndex(dropDown,selectedIndex) {

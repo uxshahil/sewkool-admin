@@ -142,29 +142,6 @@ echo "</div>";
         </td>
     </tr>
 
-    <tr>
-        <td>Status</td>
-        <td>
-        
-        <?php
-        // read the product categories from the database
-        $stmt = $status->readChildStatus('Job_Card', 'job_card_status_id', 'Sign In');
-        
-        // put them in a select drop-down
-        echo "<select id='job_card_status_id' class='form-control' name='job_card_status_id'>";
-            echo "<option>Select status...</option>";
-
-            while ($row_status = $stmt->fetch(PDO::FETCH_ASSOC)){
-                extract($row_status);
-                echo "<option value='{$id}'>{$title}</option>";
-            }
-
-        echo "</select>";
-        ?>
-
-        </td>
-    </tr>
-
 	<tr>
 		<td>Total - Invoiced</td>
 		<td><input type='text' id='total_invoiced' name='total_invoiced' class='form-control' value='0.00' readonly='readonly') ?></td>
@@ -173,6 +150,26 @@ echo "</div>";
     <tr>
 		<td>Invoice: Date Due</td>
 		<td><input type='date' id='date_due' name='date_due' class='form-control' /></td>
+	</tr>
+
+    <tr>
+		<td>Client Invoice Number</td>
+		<td><input type='text' id='client_invoice_number' name='client_invoice_number' class='form-control' /></td>
+	</tr>
+
+    <tr>
+		<td>Skip Artwork Phase</td>
+        <td>
+            <select class='form-control' id='skip_artwork' name='skip_artwork'>
+                <option value='0' selected>No</option>
+                <option value='1'>Yes</option>
+            </select>
+        </td>
+	</tr>
+
+    <tr>
+		<td>Quantity Verify - Customer</td>
+		<td><input type='text' id='qty_verify_customer' name='qty_verify_customer' class='form-control' /></td>
 	</tr>
 
     </table>
@@ -256,11 +253,6 @@ if($total>0){
             echo "</tr>";
     
             echo "<tr>";
-                echo "<td>Fulfilled</td>";
-                echo "<td><input type='text' name='fulfilled' id='fulfilled_{$item_count}' value='{$fulfilled}' class='form-control' readonly='readonly'/></td>";
-            echo "</tr>";
-
-            echo "<tr>";
                 echo "<td>";
                     // delete line_item button
                     echo "<a delete-id='{$id}' class='btn btn-danger delete-object'>";
@@ -338,8 +330,18 @@ if($total>0){
         </tr>
 
         <tr>
-            <td>Fulfilled</td>
-            <td><input type='text' name='fulfilled' id='fulfilled' class='form-control' readonly='readonly' value='1'/></td>
+            <td>Item - Quality Pass</td>
+            <td><input type='text' name='item_qty_quality_pass' id='item_qty_quality_pass' class='form-control' value='0' /></td>
+        </tr>
+
+        <tr>
+            <td>Item - Quality Not Pass</td>
+            <td><input type='text' name='item_qty_quality_not_pass' id='item_qty_quality_not_pass' class='form-control' value='0' /></td>
+        </tr>
+
+        <tr>
+            <td>Item - Quality Information</td>
+            <td><input type='text' name='item_qty_quality_info' id='item_qty_quality_info' class='form-control' /></td>
         </tr>
 
         <tr>

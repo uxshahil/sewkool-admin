@@ -66,7 +66,6 @@ class business{
 					image=:image,
 					vat=:vat,
                     company_registration=:company_registration,
-                    account_status_id=:account_status_id,
                     private_client=:private_client
                     ";
 
@@ -93,7 +92,6 @@ class business{
 		$this->image=htmlspecialchars(strip_tags($this->image));
 		$this->vat=htmlspecialchars(strip_tags($this->vat));
         $this->company_registration=htmlspecialchars(strip_tags($this->company_registration));
-        $this->account_status_id=htmlspecialchars(strip_tags($this->account_status_id));
         $this->private_client=htmlspecialchars(strip_tags($this->private_client));
 
         // bind values
@@ -117,7 +115,6 @@ class business{
 		$stmt->bindParam(":image", $this->image);
 		$stmt->bindParam(":vat", $this->vat);
         $stmt->bindParam(":company_registration", $this->company_registration);
-        $stmt->bindParam(":account_status_id", $this->account_status_id);
         $stmt->bindParam(":private_client", $this->private_client);
 
         if($stmt->execute()){

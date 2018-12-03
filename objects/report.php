@@ -47,4 +47,38 @@ class report{
         $stmt->execute();
         return $stmt;
     }
+
+    function dashboardReportAll($status){
+        $query = "SELECT 
+                    j.id AS 'Job Card No', 
+                    b.name AS 'Client', 
+                    bb.name AS 'Customer', 
+                    u.first_name AS 'Assigned To', 
+                    j.qty_verify_customer AS 'Qty'
+                FROM 
+                    job_card j
+                LEFT JOIN 
+                    `status` s 
+                        ON 
+                        j.job_card_status_id = s.id  
+                LEFT JOIN 
+                    `business` b
+                        ON 
+                        j.client_business_id = b.id
+                LEFT JOIN 
+                    `user` u
+                        ON 
+                        j.assigned_to = u.id
+                LEFT JOIN 
+                    `business` bb
+                        ON 
+                        j.customer_business_id = bb.id
+                WHERE 
+                    s.title = ?";
+
+        $stmt = $this->conn->prepare( $query );
+        $stmt->bindParam(1, $status);
+        $stmt->execute();
+        return $stmt;
+    }
 }

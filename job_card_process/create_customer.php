@@ -1,11 +1,13 @@
 <?php
 
-// core.php holds pagination variables: includes session_start();
-include_once '../config/core.php'; 
+
+// core.php holds pagination variables
+include_once '../config/core.php';
 
 // inlcude dtaabase and object files
 include_once '../config/database.php';
 include_once '../objects/business.php';
+include_once '../objects/status.php';
 
 //get databse connection
 $database = new Database();
@@ -13,13 +15,22 @@ $db = $database->getConnection();
 
 // pass connection to objects
 $business = new Business($db);
+$status = new Status($db);
+
+// set navigation
+$nav_title = "Business";
+
+// set page headers
+$page_title = "Create Business";
 
 // if the form was submitted - PHP OOP CRUD Tutorial
 if($_POST){
     
     // set business property values
 	$business->name = $_POST['name'];
+	$business->private_client = $_POST['private_client'];
 	$business->description = $_POST['description'];
+
 	$business->adr_postal = $_POST['adr_postal'];
 	$business->adr_location = $_POST['adr_location'];
 	$business->contact_primary_name = $_POST['contact_primary_name'];
@@ -42,7 +53,7 @@ if($_POST){
 	
 	$business->vat = $_POST['vat'];
 	$business->company_registration = $_POST['company_registration'];
-
+	
     // create the business
     if($business->create()){
         echo "<div class='alert alert-success'>Business was created.</div>";
@@ -55,9 +66,8 @@ if($_POST){
 
     // if unable to create the business, tell the user
     else {
-        echo "<div class='alert alert-danger'>Unable to create business.</div>";
+		echo "<div class='alert alert-danger'>Unable to create business.</div>";
     }
 }
-
 
 ?>

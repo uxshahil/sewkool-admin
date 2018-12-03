@@ -35,7 +35,9 @@ if($_POST){
         // set job_card property values
         $job_card->client_business_id = $_POST['client_business_id'];
         $job_card->customer_business_id = $_POST['customer_business_id'];
-        $job_card->job_card_status_id = $_POST['job_card_status_id'];
+        $job_card->client_invoice_number = $_POST['client_invoice_number'];
+        $job_card->skip_artwork = $_POST['skip_artwork'];
+        $job_card->qty_verify_customer = $_POST['qty_verify_customer'];
 
             // initiate job_card creation or display error upon failure
             if ($job_card->create()){}else{echo "<script>alert('job_card failed')</script>"; header('Location: create_job_card.php?action=job_card_error');}

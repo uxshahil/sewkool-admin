@@ -51,6 +51,9 @@ if($_POST){
 	$job_card->client_business_id = $_POST['client_business_id'];
 	$job_card->customer_business_id = $_POST['customer_business_id'];
     $job_card->job_card_status_id = $_POST['job_card_status_id'];
+    $job_card->client_invoice_number = $_POST['client_invoice_number'];
+    $job_card->skip_artwork = $_POST['skip_artwork'];
+    $job_card->qty_verify_customer = $_POST['qty_verify_customer'];
     
     $invoice->date_issued = $_POST['date_issued'];
     $invoice->date_due = $_POST['date_due'];
@@ -209,6 +212,33 @@ if($_POST){
                 ?>
             </td>
         </tr>
+
+        <tr>
+			<td>Client Invoice Number</td>
+			<td><input type='text' name='client_invoice_number' value='<?php echo $job_card->client_invoice_number; ?>' class='form-control' /></td>
+        </tr>
+
+        <tr>
+			<td>Skip Artwork Phase</td>
+            <td>
+				<select class='form-control' name='skip_artwork'>
+					<?php 
+						if ($job_card->skip_artwork == 0){
+							echo "<option value='0' selected>No</option>";
+							echo "<option value='1'>Yes</option>";
+						} elseif ($job_card->skip_artwork == 1) {
+							echo "<option value='0'>No</option>";
+							echo "<option value='1' selected>Yes</option>";
+						}
+					?>
+				</select>
+			</td>
+        </tr>
+
+        <tr>
+			<td>Quantity Verify - Customer</td>
+			<td><input type='text' name='qty_verify_customer' value='<?php echo $job_card->qty_verify_customer; ?>' class='form-control'/></td>
+		</tr>
 
         <tr>
             <td></td>

@@ -43,7 +43,10 @@ if($_POST){
 	$line_item_temp->price_artwork = $_POST['price_artwork'];
     $line_item_temp->price_setup = $_POST['price_setup'];
     $line_item_temp->price_embroidery = $_POST['price_embroidery'];
-	$line_item_temp->fulfilled = $_POST['fulfilled'];
+
+    $line_item_temp->item_qty_quality_pass = $_POST['item_qty_quality_pass'];
+    $line_item_temp->item_qty_quality_not_pass = $_POST['item_qty_quality_not_pass'];
+    $line_item_temp->item_qty_quality_info = $_POST['item_qty_quality_info'];
 
     // create the line_item
     if($line_item_temp->create()){

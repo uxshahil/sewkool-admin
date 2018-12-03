@@ -13,6 +13,7 @@ include_once '../objects/business.php';
 include_once '../objects/invoice.php';
 include_once '../objects/line_item.php';
 include_once '../objects/status_history.php';
+include_once '../objects/user.php';
 
 // get database connection
 $database = new Database();
@@ -23,8 +24,9 @@ $job_card = new Job_Card($db);
 $status = new Status($db);
 $business = new Business($db);
 $invoice = new Invoice($db);
-$line_item= new Line_Item($db);
-$status_history= new Status_History($db);
+$line_item = new Line_Item($db);
+$status_history = new Status_History($db);
+$user = new User($db);
 
 // set ID property of job_card to be read
 $job_card->id = $id;
@@ -44,6 +46,40 @@ $nav_title = "Job_Card";
 // set page headers
 $page_title = "Job Card - " .$job_card->id;
 include_once "layout_header.php";
+
+$action = isset($_GET['action']) ? $_GET['action'] : "";
+
+if($action=='status_updated'){
+    echo "<div class='col-md-12'>";
+		echo "<div class='alert alert-success alert-dismissable'>";
+			echo "Job_Card Status was updated.";
+		echo "</div>";
+    echo "</div>";
+}
+
+else if($action=='verify_quantity'){
+    echo "<div class='col-md-12'>";
+		echo "<div class='alert alert-success alert-dismissable'>";
+			echo "Quantity checks updated.";
+		echo "</div>";
+    echo "</div>";
+}
+
+else if($action=='verify_quality'){
+    echo "<div class='col-md-12'>";
+		echo "<div class='alert alert-success alert-dismissable'>";
+			echo "Quality checks updated.";
+		echo "</div>";
+    echo "</div>";
+}
+
+else if($action=='assign_user'){
+    echo "<div class='col-md-12'>";
+		echo "<div class='alert alert-success alert-dismissable'>";
+			echo "User assigned to Job Card.";
+		echo "</div>";
+    echo "</div>";
+}
 
 // read job_card button
 echo "<div class='right-button-margin'>";
@@ -110,6 +146,11 @@ echo "<table class='table table-hover table-responsive table-bordered box'>";
 		echo "<td id='total_invoiced'>{$invoice->total_invoiced}</td>";
 	echo "</tr>";
 
+	echo "<tr>";
+		echo "<td>Signed Off - By</td>";
+		echo "<td>{$invoice->signed_off_by}</td>";
+	echo "</tr>";
+
 	echo "<tr>";    
 		echo "<td>Invoice - Status</td>";
 		echo "<td>";
@@ -119,6 +160,55 @@ echo "<table class='table table-hover table-responsive table-bordered box'>";
 			echo $status->title;
 		echo "</td>";
 	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Client Invoice Number</td>";
+		echo "<td>{$job_card->client_invoice_number}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Skip Artwork Phase</td>";
+		echo "<td>{$job_card->skip_artwork}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Quantity Verify - Customer</td>";
+		echo "<td>{$job_card->qty_verify_customer}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Quantity Verify - Checked</td>";
+		echo "<td>{$job_card->qty_verify_checked}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Quantity Verify - Info</td>";
+		echo "<td>{$job_card->qty_verify_info}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Quality Verify - Pass</td>";
+		echo "<td>{$job_card->qty_quality_pass}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Quality Verify - Not Pass</td>";
+		echo "<td>{$job_card->qty_quality_not_pass}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Quality Verify - Info</td>";
+		echo "<td>{$job_card->qty_quality_info}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Assigned To</td>";
+		echo "<td>";
+			$user->id=$job_card->assigned_to;
+			$user->readName();
+			echo $user->name;
+		echo "</td>";
+	echo "</tr>";	
 
 echo "</table>";
 
@@ -190,10 +280,20 @@ echo "</table>";
 					echo "<td>Price - Embroidery</td>";
 					echo "<td><input type='text' name='price_setup_{$item_count}' value='{$price_embroidery}' class='form-control' /></td>";
 				echo "</tr>";
-		
+
 				echo "<tr>";
-					echo "<td>Fulfilled</td>";
-					echo "<td><input type='text' name='fulfilled_{$item_count}' value='{$fulfilled}' class='form-control' /></td>";
+					echo "<td>Item - Quantity Quality Pass</td>";
+					echo "<td><input type='text' name='item_qty_quality_pass_{$item_count}' value='{$item_qty_quality_pass}' class='form-control' /></td>";
+				echo "</tr>";
+
+				echo "<tr>";
+					echo "<td>Item - Quantity Quality Not Pass</td>";
+					echo "<td><input type='text' name='item_qty_quality_not_pass_{$item_count}' value='{$item_qty_quality_not_pass}' class='form-control' /></td>";
+				echo "</tr>";
+
+				echo "<tr>";
+					echo "<td>Item - Quantity Quality Information</td>";
+					echo "<td><input type='text' name='item_qty_quality_info_{$item_count}' value='{$item_qty_quality_info}' class='form-control' /></td>";
 				echo "</tr>";
 		
 			echo "</table>";

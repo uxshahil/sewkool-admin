@@ -62,7 +62,7 @@ if($_POST){
 	$business->vat = $_POST['vat'];
 	$business->company_registration = $_POST['company_registration'];
 	$business->account_status_id = $_POST['account_status_id'];
-
+	$business->private_client = $_POST['private_client'];
 
 // update the business
     if($business->update()){
@@ -86,6 +86,23 @@ if($_POST){
 		<tr>
 			<td>Name</td>
 			<td><input type='text' name='name' value='<?php echo $business->name; ?>' class='form-control' maxlength="50" /></td>
+		</tr>
+
+		<tr>
+			<td>Private Client</td>
+			<td>
+				<select class='form-control' name='private_client'>
+					<?php 
+						if ($business->private_client == 0){
+							echo "<option value='0' selected>No</option>";
+							echo "<option value='1'>Yes</option>";
+						} elseif ($business->private_client == 1) {
+							echo "<option value='0'>No</option>";
+							echo "<option value='1' selected>Yes</option>";
+						}
+					?>
+				</select>
+			</td>
 		</tr>
 
 		<tr>
@@ -205,11 +222,6 @@ if($_POST){
                 ?>
             </td>
         </tr>
-
-		<tr>
-			<td>Private Client</td>
-			<td><input type='text' name='private_client' value='<?php echo $business->private_client; ?>' class='form-control' /></td>
-		</tr>
 
         <tr>
             <td></td>

@@ -9,7 +9,7 @@ session_start();
 date_default_timezone_set('Africa/Johannesburg');
 
 // home page url *EDIT*
-$home_url="http://localhost/tuts/sewkool-admin/"; // local http
+$home_url="http://localhost/sewkool-admin/"; // local http
 //$home_url="https://localhost/tuts/sewkool-admin/"; // remote https
 
 // page given in URL parameter, default page is one

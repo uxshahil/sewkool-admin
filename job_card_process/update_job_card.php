@@ -12,6 +12,7 @@ include_once '../objects/status.php';
 include_once '../objects/business.php';
 include_once '../objects/invoice.php';
 include_once '../objects/line_item.php';
+include_once '../objects/status_history.php';
 
 // get database connection
 $database = new Database();
@@ -23,6 +24,7 @@ $status = new Status($db);
 $business = new Business($db);
 $invoice = new Invoice($db);
 $line_item= new Line_Item($db);
+$status_history = new Status_History($db);
 
 // set ID property of job_card to be read
 $job_card->id = $id;
@@ -54,7 +56,10 @@ if($_POST){
 	$job_card->client_business_id = $_POST['client_business_id'];
 	$job_card->customer_business_id = $_POST['customer_business_id'];
     $job_card->job_card_status_id = $_POST['job_card_status_id'];
-    
+    $job_card->client_invoice_number = $_POST['client_invoice_number'];
+    $job_card->skip_artwork = $_POST['skip_artwork'];
+    $job_card->qty_verify_customer = $_POST['qty_verify_customer'];
+
     $invoice->date_issued = $_POST['date_issued'];
     $invoice->date_due = $_POST['date_due'];
 	$invoice->total_invoiced = $_POST['total_invoiced'];
@@ -63,7 +68,7 @@ if($_POST){
 // update the job_card
     if($job_card->update()){
         if($invoice->update()){
-            if ($job_card->trackJobCardStatus()){
+            if ($status_history->trackJobCardStatus($id)){
                 // update account status
                 $business->id = $job_card->client_business_id;
                 $business->setAccountStatus();
@@ -90,6 +95,7 @@ if($_POST){
             echo "Unable to udpate job_card.";
         echo "</div>";
     }
+  
 }
 ?>
 
@@ -224,6 +230,33 @@ if($_POST){
         </tr>
 
         <tr>
+			<td>Client Invoice Number</td>
+			<td><input type='text' name='client_invoice_number' value='<?php echo $job_card->client_invoice_number; ?>' class='form-control'/></td>
+		</tr>
+
+        <tr>
+            <td>Skip Artwork Phase</td>
+            <td>
+				<select class='form-control' name='skip_artwork'>
+					<?php 
+						if ($job_card->skip_artwork == 0){
+							echo "<option value='0' selected>No</option>";
+							echo "<option value='1'>Yes</option>";
+						} elseif ($job_card->skip_artwork == 1) {
+							echo "<option value='0'>No</option>";
+							echo "<option value='1' selected>Yes</option>";
+						}
+					?>
+				</select>
+			</td>
+		</tr>
+
+        <tr>
+			<td>Quantity Verify - Customer</td>
+			<td><input type='text' name='qty_verify_customer' value='<?php echo $job_card->qty_verify_customer; ?>' class='form-control'/></td>
+		</tr>
+       
+        <tr>
             <td></td>
             <td>
                 <button type="submit" class="btn btn-primary">Update</button>
@@ -303,10 +336,20 @@ if($total>0){
                 echo "<td>Price - Embroidery</td>";
                 echo "<td><input type='text' name='price_setup_{$item_count}' value='{$price_embroidery}' class='form-control'" . (($_SESSION['access_level']!="Admin") ? " readonly='readonly'" : ""). "/></td>";
             echo "</tr>";
-    
+
             echo "<tr>";
-                echo "<td>Fulfilled</td>";
-                echo "<td><input type='text' name='fulfilled_{$item_count}' value='{$fulfilled}' class='form-control' /></td>";
+                echo "<td>Item - Quantity Quality Pass</td>";
+                echo "<td><input type='text' name='item_qty_quality_pass_{$item_count}' value='{$item_qty_quality_pass}' class='form-control' /></td>";
+            echo "</tr>";
+
+            echo "<tr>";
+                echo "<td>Item - Quantity Quality Not Pass</td>";
+                echo "<td><input type='text' name='item_qty_quality_not_pass_{$item_count}' value='{$item_qty_quality_not_pass}' class='form-control' /></td>";
+            echo "</tr>";
+
+            echo "<tr>";
+                echo "<td>Item - Quantity Quality Information</td>";
+                echo "<td><input type='text' name='item_qty_quality_info_{$item_count}' value='{$item_qty_quality_info}' class='form-control' /></td>";
             echo "</tr>";
 
             echo "<tr>";

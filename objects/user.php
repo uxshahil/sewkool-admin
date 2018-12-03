@@ -707,6 +707,7 @@ class user{
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $this->name = $row['name'];
+        $this->name = $row['first_name'] . " " . $this->name = $row['last_name']  ;
+        
     }
 }

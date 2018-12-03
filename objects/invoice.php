@@ -17,7 +17,8 @@ class invoice{
 		public $created_by;
 		public $modified_date;
 		public $modified_by;
-		public $row_source;
+        public $row_source;
+        public $signed_off_by;
 
     public function __construct($db){
         $this->conn = $db;
@@ -210,7 +211,8 @@ class invoice{
 		$this->created_by = $row['created_by'];
 		$this->modified_date = $row['modified_date'];
 		$this->modified_by = $row['modified_by'];
-		$this->row_source = $row['row_source'];
+        $this->row_source = $row['row_source'];
+        $this->signed_off_by = $row['signed_off_by'];
 
     }
 
@@ -236,7 +238,8 @@ class invoice{
         $this->date_issued = $row['date_issued'];
         $this->date_due = $row['date_due'];
 		$this->total_invoiced = $row['total_invoiced'];
-		$this->invoice_status_id = $row['invoice_status_id'];
+        $this->invoice_status_id = $row['invoice_status_id'];
+        $this->signed_off_by = $row['signed_off_by'];
 
     }
     
@@ -250,7 +253,7 @@ class invoice{
                     date_issued=:date_issued,
                     date_due=:date_due,
 					total_invoiced=:total_invoiced,
-					invoice_status_id=:invoice_status_id
+                    invoice_status_id=:invoice_status_id
                 WHERE
                     id = :id";
         
@@ -263,7 +266,7 @@ class invoice{
         $this->date_issued=htmlspecialchars(strip_tags($this->date_issued));
         $this->date_due=htmlspecialchars(strip_tags($this->date_due));
 		$this->total_invoiced=htmlspecialchars(strip_tags($this->total_invoiced));
-		$this->invoice_status_id=htmlspecialchars(strip_tags($this->invoice_status_id));
+        $this->invoice_status_id=htmlspecialchars(strip_tags($this->invoice_status_id));
 
         // bind values
 		$stmt->bindParam(":id", $this->id);
@@ -272,7 +275,7 @@ class invoice{
         $stmt->bindParam(":date_issued", $this->date_issued);
         $stmt->bindParam(":date_due", $this->date_due);
 		$stmt->bindParam(":total_invoiced", $this->total_invoiced);
-		$stmt->bindParam(":invoice_status_id", $this->invoice_status_id);
+        $stmt->bindParam(":invoice_status_id", $this->invoice_status_id);
 
         // execute the query
         if ($stmt->execute()){
@@ -282,25 +285,27 @@ class invoice{
         return false;
     }
 
-    /*function updateJobCardID(){
+    function signOffInvoice(){
 
         $query = "UPDATE
                     " . $this->table_name . "
                 SET
-                    job_card_id=:job_card_id,
-                    invoice_number=:invoice_number
+                    date_issued=:date_issued,
+                    signed_off_by=:signed_off_by
                 WHERE
-                    job_card_id = 999999";
+                    id = :id";
         
         $stmt = $this->conn->prepare($query);
 
         // posted values
-		$this->invoice_number=htmlspecialchars(strip_tags($this->invoice_number));
-		$this->job_card_id=htmlspecialchars(strip_tags($this->job_card_id));
-
+		$this->id=htmlspecialchars(strip_tags($this->id));
+        $this->date_issued=htmlspecialchars(strip_tags($this->date_issued));
+        $this->signed_off_by=htmlspecialchars(strip_tags($this->signed_off_by));
+		
         // bind values
-		$stmt->bindParam(":invoice_number", $this->invoice_number);
-		$stmt->bindParam(":job_card_id", $this->job_card_id);
+		$stmt->bindParam(":id", $this->id);
+		$stmt->bindParam(":date_issued", $this->date_issued);
+        $stmt->bindParam(":signed_off_by", $this->signed_off_by);
 
         // execute the query
         if ($stmt->execute()){
@@ -308,7 +313,7 @@ class invoice{
         }
 
         return false;
-    }*/
+    }
 
     // delete the business
     function delete(){
@@ -467,6 +472,7 @@ class invoice{
 
         return $result_message;
     }
+
     // used by select drop-down list
     function read(){
         // select all data
@@ -474,6 +480,23 @@ class invoice{
                     *
                 FROM 
                     " . $this->table_name . "
+                ORDER BY
+                    invoice_number";
+        $stmt = $this->conn->prepare( $query );
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    // used by select drop-down list
+    function readPendingSignOff(){
+        // select all data
+        $query = "SELECT
+                    *
+                FROM 
+                    " . $this->table_name . "
+                WHERE 
+                    date_issued IS NULL
                 ORDER BY
                     invoice_number";
         $stmt = $this->conn->prepare( $query );

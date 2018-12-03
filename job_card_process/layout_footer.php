@@ -24,6 +24,9 @@
         case "Read Job_Card":
             echo '<script src="delete_job_card_process.js"></script>';
             break;    
+        case "Manage Job_Card";
+            echo '<script src="manage_job_card.js"></script>';
+            break;    
     }
 ?>
 

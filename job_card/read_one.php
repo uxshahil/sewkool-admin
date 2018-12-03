@@ -102,6 +102,11 @@ echo "<table class='table table-hover table-responsive table-bordered'>";
 		echo "<td>{$invoice->total_invoiced}</td>";
 	echo "</tr>";
 
+	echo "<tr>";
+		echo "<td>Signed Off - By</td>";
+		echo "<td>{$invoice->signed_off_by}</td>";
+	echo "</tr>";
+
 	echo "<tr>";    
 		echo "<td>Invoice - Status</td>";
 		echo "<td>";
@@ -111,6 +116,51 @@ echo "<table class='table table-hover table-responsive table-bordered'>";
 			echo $status->title;
 		echo "</td>";
 	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Client Invoiced Number</td>";
+		echo "<td>{$job_card->client_invoice_number}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Skip Artwork Phase</td>";
+		echo "<td>{$job_card->skip_artwork}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Quantity Verify - Customer</td>";
+		echo "<td>{$job_card->qty_verify_customer}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Quantity Verify - Checked</td>";
+		echo "<td>{$job_card->qty_verify_checked}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Quantity Verify - Info</td>";
+		echo "<td>{$job_card->qty_verify_info}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Quality Verify - Pass</td>";
+		echo "<td>{$job_card->qty_quality_pass}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Quality Verify - Not Pass</td>";
+		echo "<td>{$job_card->qty_quality_not_pass}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Quality Verify - Info</td>";
+		echo "<td>{$job_card->qty_quality_info}</td>";
+	echo "</tr>";
+	
+	echo "<tr>";
+		echo "<td>Quality Verify - Info</td>";
+		echo "<td>{$job_card->assigned_to}</td>";
+	echo "</tr>";	
 
 echo "<table class='table table-hover table-responsive table-bordered'>";
 

@@ -26,7 +26,6 @@ if($total_rows>0){
 			echo "<th>job_card_id</th>";
 			echo "<th>item</th>";
 			echo "<th>artwork_position</th>";
-            echo "<th>fulfilled</th>";
             echo "<th></th>";
         echo "</tr>";
 
@@ -39,7 +38,6 @@ if($total_rows>0){
 				echo "<td>{$job_card_id}</td>";
 				echo "<td>{$item}</td>";
 				echo "<td>{$artwork_position}</td>";
-				echo "<td>{$fulfilled}</td>";
 
                 echo "<td style='text-align: right;'>";
                     // read line_item button

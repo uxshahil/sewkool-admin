@@ -29,6 +29,16 @@ $nav_title = "Invoice";
 $page_title = "Invoice - " .$invoice->invoice_number;
 include_once "layout_header.php";
 
+$action = isset($_GET['action']) ? $_GET['action'] : "";
+
+if($action=='sign_off_invoice'){
+    echo "<div class='col-md-12'>";
+		echo "<div class='alert alert-success alert-dismissable'>";
+			echo "Invoice Signed Off.";
+		echo "</div>";
+    echo "</div>";
+}
+
 // read invoice button
 echo "<div class='right-button-margin'>";
     echo "<a href='index.php' class='btn btn-primary pull-right'>";
@@ -67,6 +77,11 @@ echo "<table class='table table-hover table-responsive table-bordered box'>";
 	echo "<tr>";
 		echo "<td>Total - Invoiced</td>";
 		echo "<td>{$invoice->total_invoiced}</td>";
+	echo "</tr>";
+
+	echo "<tr>";
+		echo "<td>Signed Off - By</td>";
+		echo "<td>{$invoice->signed_off_by}</td>";
 	echo "</tr>";
 
 	echo "<tr>";

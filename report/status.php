@@ -1,8 +1,11 @@
 <?php
 
+// core.php holds pagination variables: includes session_start();
+include_once '../config/core.php'; 
+
 // inlcude dtaabase and object files
-include_once 'config/database.php';
-include_once 'objects/report.php';
+include_once '../config/database.php';
+include_once '../objects/report.php';
 
 //get databse connection
 $database = new Database();
@@ -11,15 +14,21 @@ $db = $database->getConnection();
 // pass connection to objects
 $report = new Report($db);
 
+// set navigation
+$nav_title = "Report";
+
+// set page headers
+$page_title = "Status";
+include_once 'layout_header.php';
 ?>
 
 <div class="col-md-12" id="barchart_material" style="width: 800px; height: 300px;"></div>
 
 <?php 
 $stmt = $report->statusReport("All");
-$row_count = $stmt->rowCount();
+$total_rows = $stmt->rowCount();
 
-if ($row_count > 0) {
+if ($total_rows > 0) {
 ?>
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -62,4 +71,6 @@ if ($row_count > 0) {
 else{
     echo "No Data";
 }
+
+include_once 'layout_footer.php';
 ?>

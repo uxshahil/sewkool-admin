@@ -31,7 +31,20 @@
 
                         <!-- highlight if $nav_title has 'Job_Card' word. -->
                         <li <?php echo $nav_title=="Job_Card" ? "class='active'" : ""; ?>>
-                            <a href="<?php echo $home_url;?>job_card_process/index.php" class="dropdown-toggle">Job_Card</a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Job_Card</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?php echo $home_url;?>job_card_process/index.php" class="dropdown-toggle">Read Job_Card</a></li>
+                                <li><a href="<?php echo $home_url; ?>job_card_process/manage_job_card.php">Manage Job Card</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- highlight if $nav_title has 'Invoice' word. -->
+                        <li <?php echo $nav_title=="Invoice" ? "class='active'" : ""; ?>>
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Invoice</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?php echo $home_url;?>invoice/index.php" class="dropdown-toggle">Read Invoice</a></li>
+                                <li><a href="<?php echo $home_url; ?>invoice/issue_invoice.php">Sign-Off Invoice</a></li>
+                            </ul>
                         </li>
 
                         <!-- highlight if $nav_title has 'Business' word. -->
@@ -64,7 +77,20 @@
 
                         <!-- highlight if $nav_title has 'Job_Card' word. -->
                         <li <?php echo $nav_title=="Job_Card" ? "class='active'" : ""; ?>>
-                            <a href="<?php echo $home_url;?>job_card_process/index.php" class="dropdown-toggle">Job_Card</a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Job_Card</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?php echo $home_url;?>job_card_process/index.php" class="dropdown-toggle">Read Job_Card</a></li>
+                                <li><a href="<?php echo $home_url; ?>job_card_process/manage_job_card.php">Manage Job Card</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- highlight if $nav_title has 'Invoice' word. -->
+                        <li <?php echo $nav_title=="Invoice" ? "class='active'" : ""; ?>>
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Invoice</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?php echo $home_url;?>invoice/index.php" class="dropdown-toggle">Read Invoice</a></li>
+                                <li><a href="<?php echo $home_url; ?>invoice/sign_off_invoice.php">Sign-Off Invoice</a></li>
+                            </ul>
                         </li>
 
                         <!-- highlight if $nav_title has 'Business' word. -->
@@ -76,6 +102,15 @@
                         <li <?php echo $nav_title=="Receipt" ? "class='active'" : ""; ?>>
                             <a href="<?php echo $home_url;?>receipt/index.php" class="dropdown-toggle">Receipt</a>
                         </li>   
+
+                        <!-- highlight if $nav_title has 'Reports' word. -->
+                        <li <?php echo $nav_title=="Report" ? "class='active'" : ""; ?>>
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Report</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?php echo $home_url;?>report/dashboard.php" class="dropdown-toggle">Dashboard</a></li>
+                                <li><a href="<?php echo $home_url; ?>report/status.php">Status</a></li>
+                            </ul>
+                        </li>
 
                         <!-- highlight if $nav_title has 'Job_Card' word. -->
                         <li <?php echo $nav_title=="Admin" ? "class='active'" : ""; ?>>

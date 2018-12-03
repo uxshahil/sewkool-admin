@@ -39,7 +39,9 @@ if($_POST){
     // set job_card property values
 	$job_card->client_business_id = $_POST['client_business_id'];
 	$job_card->customer_business_id = $_POST['customer_business_id'];
-    $job_card->job_card_status_id = $_POST['job_card_status_id'];
+    $job_card->client_invoice_number = $_POST['client_invoice_number'];
+    $job_card->skip_artwork = $_POST['skip_artwork'];
+    $job_card->qty_verify_customer = $_POST['qty_verify_customer'];
     
     // set invoice property values
     $invoice->invoice_number = $_POST['invoice_number'];
@@ -129,29 +131,6 @@ if($_POST){
     </tr>
 
     <tr>
-        <td>Status</td>
-        <td>
-        
-        <?php
-        // read the product categories from the database
-        $stmt = $status->readChildStatus('Job_Card', 'job_card_status_id', 'Sign In');
-        
-        // put them in a select drop-down
-        echo "<select class='form-control' name='job_card_status_id'>";
-            echo "<option>Select status...</option>";
-
-            while ($row_status = $stmt->fetch(PDO::FETCH_ASSOC)){
-                extract($row_status);
-                echo "<option value='{$id}'>{$title}</option>";
-            }
-
-        echo "</select>";
-        ?>
-
-        </td>
-    </tr>
-
-    <tr>
 		<td>Invoice Number</td>
 		<td><input type='text' name='invoice_number' class='form-control' /></td>
 	</tr>
@@ -192,6 +171,26 @@ if($_POST){
 		?>
 
 		</td>
+	</tr>
+
+    <tr>
+        <td>Client Invoice Number</td>
+        <td><input type='text' name='client_invoice_number' class='form-control'/></td>
+    </tr>
+
+    <tr>
+        <td>Skip Artwork Phase</td>
+        <td>
+            <select class='form-control' name='skip_artwork'>
+                <option value='0' selected>No</option>
+                <option value='1'>Yes</option>
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+		<td>Quantity - Customer</td>
+		<td><input type='text' id='qty_verify_customer' name='qty_verify_customer' class='form-control' /></td>
 	</tr>
 
         <tr>
