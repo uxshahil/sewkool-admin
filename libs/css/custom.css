@@ -188,3 +188,7 @@ body {
     background-color: #337ab7;
     color: #fff;
 }
+
+.light-warning-bg {
+    background-color: rgba(255,105,105,0.1);
+}

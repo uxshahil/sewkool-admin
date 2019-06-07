@@ -43,6 +43,7 @@ include_once 'layout_header.php';
                         echo "<th>Client</th>";
                         echo "<th>Customer</th>";
                         echo "<th>Status</th>";
+                        echo "<th>Created On</th>"; 
                         echo "<th>Deadline</th>";                        
                         echo "<th>Days Left</th>";
                         echo "<th>Quantity</th>";
@@ -52,26 +53,39 @@ include_once 'layout_header.php';
                         
                         extract($row);                        
                 
-                        echo "<tr>";
-                            echo "<td>{$row['id']}</td>";
-                            echo "<td>{$row['Client']}</td>";
-                            echo "<td>{$row['Customer']}</td>";
-                            echo "<td>{$row['Status']}</td>";
-                            echo "<td>" . date("j F Y", strtotime($row['Deadline'])) ."</td>";
-                            echo "<td>{$row['Days Left']}</td>";                            
+                        if ($row['deadline_enforce'] == 1) {
+                            echo "<tr class='light-warning-bg'>";    
+                        }
+                        else {
+                            echo "<tr>";
+                        }
 
-                            $stmt_sub = $report->dashboardDeadlineReportCountQuantity($row['id']);
-                            $total_rows_sub = $stmt_sub->rowCount();
-                        
-                            if ($total_rows_sub > 0 ){
-                                
-                                while ($row_sub = $stmt_sub->fetch(PDO::FETCH_ASSOC)){
-                                            
-                                    extract($row_sub);       
-                                    echo "<td>{$row_sub['Count']}</td>";
-    
-                                }
+                        echo "<td>";
+                            echo "<a href='{$home_url}job_card_process/read_one.php?id={$row['id']}'>";
+                                echo "<div style='height:100%;width:100%''>";
+                                    echo "{$row['id']}";
+                                echo "</div>";
+                            echo "</a>";
+                        echo "</td>";
+                        echo "<td>{$row['Client']}</td>";
+                        echo "<td>{$row['Customer']}</td>";
+                        echo "<td>{$row['Status']}</td>";
+                        echo "<td>" . date("j F Y", strtotime($row['Created'])) ."</td>";
+                        echo "<td>" . date("j F Y", strtotime($row['Deadline'])) ."</td>";
+                        echo "<td>{$row['Days Left']}</td>";                            
+
+                        $stmt_sub = $report->dashboardDeadlineReportCountQuantity($row['id']);
+                        $total_rows_sub = $stmt_sub->rowCount();
+                    
+                        if ($total_rows_sub > 0 ){
+                            
+                            while ($row_sub = $stmt_sub->fetch(PDO::FETCH_ASSOC)){
+                                        
+                                extract($row_sub);       
+                                echo "<td>{$row_sub['Count']}</td>";
+
                             }
+                        }
 
                         echo "</tr>";
                     }
@@ -99,6 +113,7 @@ include_once 'layout_header.php';
                         echo "<th>Client</th>";
                         echo "<th>Customer</th>";
                         echo "<th>Status</th>";
+                        echo "<th>Created On</th>"; 
                         echo "<th>Deadline</th>";
                         echo "<th>Days Left</th>";
                         echo "<th>Quantity</th>";
@@ -108,26 +123,39 @@ include_once 'layout_header.php';
                         
                         extract($row);
 
-                        echo "<tr>";
-                            echo "<td>{$row['id']}</td>";
-                            echo "<td>{$row['Client']}</td>";
-                            echo "<td>{$row['Customer']}</td>";
-                            echo "<td>{$row['Status']}</td>";
-                            echo "<td>" . date("j F Y", strtotime($row['Deadline'])) ."</td>";
-                            echo "<td>{$row['Days Left']}</td>";                        
+                        if ($row['deadline_enforce'] == 1) {
+                            echo "<tr class='light-warning-bg'>";    
+                        }
+                        else {
+                            echo "<tr>";
+                        }
 
-                            $stmt_sub = $report->dashboardDeadlineReportCountQuantity($row['id']);
-                            $total_rows_sub = $stmt_sub->rowCount();
-                        
-                            if ($total_rows_sub > 0 ){
-                                
-                                while ($row_sub = $stmt_sub->fetch(PDO::FETCH_ASSOC)){
-                                            
-                                    extract($row_sub);       
-                                    echo "<td>{$row_sub['Count']}</td>";
-    
-                                }
+                        echo "<td>";
+                            echo "<a href='{$home_url}job_card_process/read_one.php?id={$row['id']}'>";
+                                echo "<div style='height:100%;width:100%''>";
+                                    echo "{$row['id']}";
+                                echo "</div>";
+                            echo "</a>";
+                        echo "</td>";
+                        echo "<td>{$row['Client']}</td>";
+                        echo "<td>{$row['Customer']}</td>";
+                        echo "<td>{$row['Status']}</td>";
+                        echo "<td>" . date("j F Y", strtotime($row['Created'])) ."</td>";
+                        echo "<td>" . date("j F Y", strtotime($row['Deadline'])) ."</td>";
+                        echo "<td>{$row['Days Left']}</td>";                        
+
+                        $stmt_sub = $report->dashboardDeadlineReportCountQuantity($row['id']);
+                        $total_rows_sub = $stmt_sub->rowCount();
+                    
+                        if ($total_rows_sub > 0 ){
+                            
+                            while ($row_sub = $stmt_sub->fetch(PDO::FETCH_ASSOC)){
+                                        
+                                extract($row_sub);       
+                                echo "<td>{$row_sub['Count']}</td>";
+
                             }
+                        }
                         echo "</tr>";
                     }
                 echo "</table>";
@@ -154,6 +182,7 @@ include_once 'layout_header.php';
                         echo "<th>Client</th>";
                         echo "<th>Customer</th>";
                         echo "<th>Status</th>";
+                        echo "<th>Created On</th>"; 
                         echo "<th>Deadline</th>";
                         echo "<th>Days Left</th>";
                         echo "<th>Quantity</th>";
@@ -163,26 +192,40 @@ include_once 'layout_header.php';
                         
                         extract($row);
 
-                        echo "<tr>";
-                            echo "<td>{$row['id']}</td>";
-                            echo "<td>{$row['Client']}</td>";
-                            echo "<td>{$row['Customer']}</td>";
-                            echo "<td>{$row['Status']}</td>";
-                            echo "<td>" . date("j F Y", strtotime($row['Deadline'])) ."</td>";
-                            echo "<td>{$row['Days Left']}</td>";                            
+                        if ($row['deadline_enforce'] == 1) {
+                            echo "<tr class='light-warning-bg'>";    
+                        }
+                        else {
+                            echo "<tr>";
+                        }
 
-                            $stmt_sub = $report->dashboardDeadlineReportCountQuantity($row['id']);
-                            $total_rows_sub = $stmt_sub->rowCount();
-                        
-                            if ($total_rows_sub > 0 ){
-                                
-                                while ($row_sub = $stmt_sub->fetch(PDO::FETCH_ASSOC)){
-                                            
-                                    extract($row_sub);       
-                                    echo "<td>{$row_sub['Count']}</td>";
-    
-                                }
+                        echo "<td>";
+                            echo "<a href='{$home_url}job_card_process/read_one.php?id={$row['id']}'>";
+                                echo "<div style='height:100%;width:100%''>";
+                                    echo "{$row['id']}";
+                                echo "</div>";
+                            echo "</a>";
+                        echo "</td>";
+                        echo "<td>{$row['id']}</td>";
+                        echo "<td>{$row['Client']}</td>";
+                        echo "<td>{$row['Customer']}</td>";
+                        echo "<td>{$row['Status']}</td>";
+                        echo "<td>" . date("j F Y", strtotime($row['Created'])) ."</td>";
+                        echo "<td>" . date("j F Y", strtotime($row['Deadline'])) ."</td>";
+                        echo "<td>{$row['Days Left']}</td>";                            
+
+                        $stmt_sub = $report->dashboardDeadlineReportCountQuantity($row['id']);
+                        $total_rows_sub = $stmt_sub->rowCount();
+                    
+                        if ($total_rows_sub > 0 ){
+                            
+                            while ($row_sub = $stmt_sub->fetch(PDO::FETCH_ASSOC)){
+                                        
+                                extract($row_sub);       
+                                echo "<td>{$row_sub['Count']}</td>";
+
                             }
+                        }
                         echo "</tr>";
                     }
                 echo "</table>";
@@ -198,7 +241,6 @@ include_once 'layout_header.php';
 
 
 <?php
-
 
 include_once 'layout_footer.php';
 ?>

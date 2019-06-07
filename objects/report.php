@@ -158,7 +158,7 @@ class report{
 
         if ($duration == "0") {
             $query = "SELECT 
-                         j.id, j.created_date, j.deadline_date AS Deadline, b.name AS Client, bb.name AS Customer, s.title AS 'Status', DATEDIFF(deadline_date,CURDATE()) AS 'Days Left'
+                         j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', DATEDIFF(deadline_date,CURDATE()) AS 'Days Left'
                     FROM 
                         Job_Card j
                     LEFT JOIN  
@@ -173,12 +173,12 @@ class report{
                     WHERE 
                         ( DATEDIFF(deadline_date,CURDATE()) <= 0) 
                     ORDER BY
-                        deadline_date ASC;";
+                        deadline_enforce DESC, deadline_date ASC;";
         }
 
         if ($duration == "1") {
             $query = "SELECT 
-                        j.id, j.created_date, j.deadline_date AS Deadline, b.name AS Client, bb.name AS Customer, s.title AS 'Status', DATEDIFF(deadline_date,CURDATE()) AS 'Days Left'
+                        j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', DATEDIFF(deadline_date,CURDATE()) AS 'Days Left'
                     FROM 
                         Job_Card j
                     LEFT JOIN  
@@ -193,12 +193,12 @@ class report{
                     WHERE 
                         ( DATEDIFF(deadline_date,CURDATE()) > 0) AND ( DATEDIFF(deadline_date,CURDATE() ) <= 3) 
                     ORDER BY
-                        deadline_date ASC;";
+                        deadline_enforce DESC, deadline_date ASC;";
         }            
 
         if ($duration == "2") {
             $query = "SELECT 
-                        j.id, j.created_date, j.deadline_date AS Deadline, b.name AS Client, bb.name AS Customer, s.title AS 'Status', DATEDIFF(deadline_date,CURDATE()) AS 'Days Left'
+                        j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', DATEDIFF(deadline_date,CURDATE()) AS 'Days Left'
                     FROM 
                         Job_Card j
                     LEFT JOIN  
@@ -213,7 +213,7 @@ class report{
                     WHERE 
                         ( DATEDIFF(deadline_date,CURDATE()) > 3) 
                     ORDER BY
-                        deadline_date ASC;";
+                        deadline_enforce DESC, deadline_date ASC;";
         }      
 
         $stmt = $this->conn->prepare( $query );
