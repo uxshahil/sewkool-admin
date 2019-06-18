@@ -19,9 +19,21 @@ function setDefaultDates(){
     document.getElementById("date_due").value = invoiceDate.toISOString().slice(0,10);
 
     // Default Deadline Date = 14 Days
-    deadlineDate.setDate(deadlineDate.getDate()+5)
-    document.getElementById("deadline_date").value = deadlineDate.toISOString().slice(0,10);
+    deadlineDate.setDate(deadlineDate.getDate())
+    deadlineDate = addBusinessDays(deadlineDate, 5);
 
+    document.getElementById("deadline_date").value = deadlineDate.toISOString().slice(0,10);
+}
+
+// https://github.com/lsmith/addBusinessDays/blob/master/addBusinessDays.js
+// var d = new Date();
+// addBusinessDays(d, numberOfDays);
+
+function addBusinessDays(d,n) {
+    d = new Date(d.getTime());
+    var day = d.getDay();
+    d.setDate(d.getDate() + n + (day === 6 ? 2 : +!day) + (Math.floor((n - 1 + (day % 6 || 1)) / 5) * 2));
+    return d;
 }
 
 function setDefaultDropdowns(){
