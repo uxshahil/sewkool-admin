@@ -11,15 +11,16 @@ window.onload =
 
 function setDefaultDates(){
 
-    var currentTime = new Date();
+    var invoiceDate = new Date();
+    var deadlineDate = new Date();
 
     // Default Invoice Date Due = 30 Days
-    currentTime.setDate(currentTime.getDate()+30)
-    document.getElementById("date_due").value = currentTime.toISOString().slice(0,10);
+    invoiceDate.setDate(invoiceDate.getDate()+30)
+    document.getElementById("date_due").value = invoiceDate.toISOString().slice(0,10);
 
     // Default Deadline Date = 14 Days
-    currentTime.setDate(currentTime.getDate()+5)
-    document.getElementById("deadline_date").value = currentTime.toISOString().slice(0,10);
+    deadlineDate.setDate(deadlineDate.getDate()+5)
+    document.getElementById("deadline_date").value = deadlineDate.toISOString().slice(0,10);
 
 }
 
