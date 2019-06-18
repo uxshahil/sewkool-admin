@@ -197,7 +197,9 @@ class report{
                             ((DATEDIFF(deadline_date, CURDATE())) -
                             ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
                             (case when weekday(deadline_date) = 6 then 1 else 0 end) -
-                            (case when weekday(CURDATE()) = 5 then 1 else 0 end)) as 'Days Left'
+                            (case when weekday(CURDATE()) = 5 then 1 else 0 end)) as '(W) Days Left',
+                        
+                        DATEDIFF(deadline_date,CURDATE()) AS 'Days Left'
 
                     FROM 
                         Job_Card j
