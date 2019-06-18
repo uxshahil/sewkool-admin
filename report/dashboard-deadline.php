@@ -105,7 +105,7 @@ include_once 'layout_header.php';
 
                 if($total_rows>0){
 
-                echo "<h3>Less than 3 days [{$total_rows}]</h3>";  
+                echo "<h3>Due within 5 working days [{$total_rows}]</h3>";  
 
                 echo "<table class='table table-hover table-responsive table-bordered box'>";
                     echo "<tr>";
@@ -174,7 +174,7 @@ include_once 'layout_header.php';
 
                 if($total_rows>0){
 
-                echo "<h3>More than 3 days [{$total_rows}]</h3>";  
+                echo "<h3>Other [{$total_rows}]</h3>";  
 
                 echo "<table class='table table-hover table-responsive table-bordered box'>";
                     echo "<tr>";

@@ -191,7 +191,7 @@ class report{
                         Status s
                             ON j.job_card_status_id = s.id
                     WHERE 
-                        ( DATEDIFF(deadline_date,CURDATE()) > 0) AND ( DATEDIFF(deadline_date,CURDATE() ) <= 3) 
+                        ( DATEDIFF(deadline_date,CURDATE()) > 0) AND ( DATEDIFF(deadline_date,CURDATE() ) <= 7) 
                     ORDER BY
                         deadline_enforce DESC, deadline_date ASC;";
         }            
@@ -211,7 +211,7 @@ class report{
                         Status s
                             ON j.job_card_status_id = s.id
                     WHERE 
-                        ( DATEDIFF(deadline_date,CURDATE()) > 3) 
+                        ( DATEDIFF(deadline_date,CURDATE()) > 7) 
                     ORDER BY
                         deadline_enforce DESC, deadline_date ASC;";
         }      
