@@ -158,13 +158,16 @@ class report{
 
         if ($duration == "0") {
             $query = "SELECT 
-                         j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', 
-
-                            ((DATEDIFF(deadline_date, CURDATE())) -
+                        j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', 
+                        
+                        ((DATEDIFF(deadline_date, CURDATE())) -
                             ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
                             (case when weekday(deadline_date) = 6 then 1 else 0 end) -
-                            (case when weekday(CURDATE()) = 5 then 1 else 0 end)) as 'Days Left'
-
+                            (case when weekday(CURDATE()) = 5 then 1 else 0 end)) as '(W) Days Left',
+                        
+                        DATEDIFF(deadline_date,CURDATE()) AS 'Days Left'
+                        
+                        
                     FROM 
                         Job_Card j
                     LEFT JOIN  
@@ -173,11 +176,16 @@ class report{
                     LEFT JOIN
                         Business bb
                             ON j.customer_business_id = bb.id
-					LEFT JOIN 
-						Status s
-							ON j.job_card_status_id = s.id
+                    LEFT JOIN 
+                        Status s
+                            ON j.job_card_status_id = s.id
                     WHERE 
-                        'Days Left' < 0
+                        ( 
+                            ((DATEDIFF(deadline_date, CURDATE())) -
+                            ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
+                            (case when weekday(deadline_date) = 6 then 1 else 0 end) -
+                            (case when weekday(CURDATE()) = 5 then 1 else 0 end)) <= 0 
+                        ) 
                     ORDER BY
                         deadline_enforce DESC, deadline_date ASC;";
         }
@@ -203,43 +211,58 @@ class report{
                         Status s
                             ON j.job_card_status_id = s.id
                     WHERE 
-                        ( 'Days Left' > 0) AND ( 'Days Left' <= 5) 
+                        
+                        ( 
+                            ((DATEDIFF(deadline_date, CURDATE())) -
+                            ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
+                            (case when weekday(deadline_date) = 6 then 1 else 0 end) -
+                            (case when weekday(CURDATE()) = 5 then 1 else 0 end)) > 0 
+                        )  
+                        
+                        AND 
+                        
+                        ( 
+                            ((DATEDIFF(deadline_date, CURDATE())) -
+                            ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
+                            (case when weekday(deadline_date) = 6 then 1 else 0 end) -
+                            (case when weekday(CURDATE()) = 5 then 1 else 0 end)) <= 5 
+                        )
+
                     ORDER BY
                         deadline_enforce DESC, deadline_date ASC;";
         }            
 
         if ($duration == "2") {
             $query = "SELECT 
-            j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', 
-            
-            ((DATEDIFF(deadline_date, CURDATE())) -
-                ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
-                (case when weekday(deadline_date) = 6 then 1 else 0 end) -
-                (case when weekday(CURDATE()) = 5 then 1 else 0 end)) as 'Working Days Left',
-            
-            DATEDIFF(deadline_date,CURDATE()) AS 'Total Days Left'
-            
-            
-            FROM 
-                Job_Card j
-            LEFT JOIN  
-                Business b
-                    ON j.client_business_id = b.id
-            LEFT JOIN
-                Business bb
-                    ON j.customer_business_id = bb.id
-            LEFT JOIN 
-                Status s
-                    ON j.job_card_status_id = s.id
-            WHERE 
-                ( 
-                    ((DATEDIFF(deadline_date, CURDATE())) -
-                    ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
-                    (case when weekday(deadline_date) = 6 then 1 else 0 end) -
-                    (case when weekday(CURDATE()) = 5 then 1 else 0 end)) > 5
-                ) 
-            ORDER BY
-                deadline_enforce DESC, deadline_date ASC;";
+                        j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', 
+                        
+                        ((DATEDIFF(deadline_date, CURDATE())) -
+                            ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
+                            (case when weekday(deadline_date) = 6 then 1 else 0 end) -
+                            (case when weekday(CURDATE()) = 5 then 1 else 0 end)) as '(W) Days Left',
+                        
+                        DATEDIFF(deadline_date,CURDATE()) AS 'Days Left'
+                        
+                    FROM 
+                        Job_Card j
+                    LEFT JOIN  
+                        Business b
+                            ON j.client_business_id = b.id
+                    LEFT JOIN
+                        Business bb
+                            ON j.customer_business_id = bb.id
+                    LEFT JOIN 
+                        Status s
+                            ON j.job_card_status_id = s.id
+                    WHERE 
+                        ( 
+                            ((DATEDIFF(deadline_date, CURDATE())) -
+                            ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
+                            (case when weekday(deadline_date) = 6 then 1 else 0 end) -
+                            (case when weekday(CURDATE()) = 5 then 1 else 0 end)) > 5
+                        ) 
+                    ORDER BY
+                        deadline_enforce DESC, deadline_date ASC;";
         }      
 
         $stmt = $this->conn->prepare( $query );
