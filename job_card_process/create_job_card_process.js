@@ -18,7 +18,7 @@ function setDefaultDates(){
     document.getElementById("date_due").value = currentTime.toISOString().slice(0,10);
 
     // Default Deadline Date = 14 Days
-    currentTime.setDate(currentTime.getDate()+14)
+    currentTime.setDate(currentTime.getDate()+5)
     document.getElementById("deadline_date").value = currentTime.toISOString().slice(0,10);
 
 }
