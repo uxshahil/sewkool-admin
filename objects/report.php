@@ -158,7 +158,7 @@ class report{
 
         if ($duration == "0") {
             $query = "SELECT 
-                        j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', 
+                        j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', s.parent_id,  
                         
                         ((DATEDIFF(deadline_date, CURDATE())) -
                             ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
@@ -185,6 +185,10 @@ class report{
                             ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
                             (case when weekday(deadline_date) = 6 then 1 else 0 end) -
                             (case when weekday(CURDATE()) = 5 then 1 else 0 end)) <= 0 
+                        )
+                    AND
+                        (
+							parent_id <> 4
                         ) 
                     ORDER BY
                         deadline_enforce DESC, deadline_date ASC;";
@@ -192,7 +196,7 @@ class report{
 
         if ($duration == "1") {
             $query = "SELECT 
-                        j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', 
+                        j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', s.parent_id,  
 
                             ((DATEDIFF(deadline_date, CURDATE())) -
                             ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
@@ -230,13 +234,19 @@ class report{
                             (case when weekday(CURDATE()) = 5 then 1 else 0 end)) <= 5 
                         )
 
+                        AND
+
+                        (
+							parent_id <> 4
+                        ) 
+
                     ORDER BY
                         deadline_enforce DESC, deadline_date ASC;";
         }            
 
         if ($duration == "2") {
             $query = "SELECT 
-                        j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', 
+                        j.id, j.created_date AS Created, j.deadline_date AS Deadline, j.deadline_enforce, b.name AS Client, bb.name AS Customer, s.title AS 'Status', s.parent_id,  
                         
                         ((DATEDIFF(deadline_date, CURDATE())) -
                             ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
@@ -262,6 +272,10 @@ class report{
                             ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
                             (case when weekday(deadline_date) = 6 then 1 else 0 end) -
                             (case when weekday(CURDATE()) = 5 then 1 else 0 end)) > 5
+                        )
+                    AND
+                        (
+							parent_id <> 4
                         ) 
                     ORDER BY
                         deadline_enforce DESC, deadline_date ASC;";
