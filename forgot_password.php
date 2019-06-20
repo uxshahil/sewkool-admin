@@ -21,7 +21,7 @@ include_once "layout_head.php";
 
 <!-- This is needed when you send requests via Ajax -->
 <script type="text/javascript">
-var baseurl = 'http://localhost/wamp64/www/sewkool-admin/';
+var baseurl = '<?php echo $home_url ?>';
 </script>
 	
 <div class="login-container">
