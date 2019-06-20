@@ -9,8 +9,8 @@ session_start();
 date_default_timezone_set('Africa/Johannesburg');
 
 // home page url *EDIT*
-$home_url="http://localhost/tuts/sewkool-admin/"; // local http
-//$home_url="https://localhost/tuts/sewkool-admin/"; // remote https
+//$home_url="http://localhost/tuts/sewkool-admin-master/"; // local http
+$home_url="http://localhost/wamp64/www/sewkool-admin/"; // local-win http
 
 // page given in URL parameter, default page is one
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
