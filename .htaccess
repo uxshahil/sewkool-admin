@@ -4,7 +4,7 @@ Options -Multiviews
 # Mod Rewrite
 Options +FollowSymLinks
 RewriteEngine On
-RewriteBase /sewkool-admin/
+RewriteBase /wamp64/www/sewkool-admin/
 
 RewriteCond %{REQUEST_FILENAME} !-f 
 RewriteCond %{REQUEST_FILENAME} !-d

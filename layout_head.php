@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="Admin Dashboard" />
+	<meta name="author" content="Midas Touch Holdings Pty Ltd" />
+
+	<link rel="icon" href="assets/images/favicon.ico">
+
     <!-- set the page title, for seo purposes too -->
     <title><?php echo isset($page_title) ? strip_tags($page_title) : "Store Front"; ?></title>
  
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="libs/vendor/css/bootstrap-3.3.7.min.css" media="screen"/>
- 
-    <!-- admin custom CSS -->
-    <link href="<?php echo $home_url . "libs/css/customer.css" ?>" rel="stylesheet" />
-    <link href="<?php echo $home_url . "libs/css/custom.css" ?>" rel="stylesheet" />
- 
+    <!-- <link rel="stylesheet" href="libs/vendor/css/bootstrap-3.3.7.min.css" media="screen"/> -->
+
+	<link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
+	<link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/neon-core.css">
+	<link rel="stylesheet" href="assets/css/neon-theme.css">
+	<link rel="stylesheet" href="assets/css/neon-forms.css">
+	<link rel="stylesheet" href="assets/css/custom.css">
+
+	<script src="assets/js/jquery-1.11.3.min.js"></script>
+
+	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+
 </head>
-<body>
- 
-    <!-- include the navigation bar -->
-    <?php include_once 'navigation.php'; ?>
- 
-    <!-- container -->
-    <div class="container">
- 
-        <?php
-        // if given page title is 'Login', do not display the title
-        if($page_title!="Login"){
-        ?>
-        
-        <div class="page-header">
-            <h1><?php echo isset($page_title) ? $page_title : "The Code of a Ninja"; ?></h1>
-        </div>
-        
-        <?php
-        }
-        ?>

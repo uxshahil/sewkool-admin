@@ -9,7 +9,8 @@ session_start();
 date_default_timezone_set('Africa/Johannesburg');
 
 // home page url *EDIT*
-$home_url="http://localhost/tuts/sewkool-admin-master/"; // local http
+//$home_url="http://localhost/tuts/sewkool-admin-master/"; // local http
+$home_url="http://localhost/wamp64/www/sewkool-admin/"; // local-win http
 //$home_url="https://dev.themidastouch.co.za/sewkool-admin/"; // dev https
 //$home_url="https://uat.themidastouch.co.za/sewkool-admin/"; // uat https
 //$home_url="https://themidastouch.co.za/sewkool-admin/"; // live https
