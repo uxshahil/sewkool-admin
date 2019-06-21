@@ -12,7 +12,7 @@ var neonResetPassword = neonResetPassword || {};
 	
 	$(document).ready(function()
 	{
-		neonResetPassword.$container = $("#form_forgot_password");
+		neonResetPassword.$container = $("#form_reset_password");
 		neonResetPassword.$steps = neonResetPassword.$container.find(".form-steps");
 		neonResetPassword.$steps_list = neonResetPassword.$steps.find(".step");
 		neonResetPassword.step = 'step-1'; // current step
