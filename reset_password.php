@@ -53,7 +53,7 @@ var baseurl = '<?php echo $home_url ?>';
 		
 		<div class="login-content">
 
-        <form method="post" role="form" id="form_reset_password">
+            <form method="post" role="form" id="form_reset_password">
 				
 				<div class="form-forgotpassword-success">
 					<i class="entypo-check"></i>
@@ -76,7 +76,7 @@ var baseurl = '<?php echo $home_url ?>';
                                     <i class="entypo-key"></i>
                                 </div>
                                 
-                                <input type="password" class="form-control" name="password1" id="password1" placeholder="Password" autocomplete="off" />
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
                             </div>
 						</div>
 						
