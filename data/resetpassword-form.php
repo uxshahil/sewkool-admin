@@ -23,11 +23,10 @@ $user = new User($db);
 # Response Data Array
 $resp = array();
 
-$resp['access_code'] = $_GET["access_code"];
-
+$resp['access_code'] = $_POST["access_code"];
 
 // get given access code
-$access_code=isset($_GET['access_code']) ? $_GET['access_code'] : die("Access code not found.");
+$access_code=isset($_POST['access_code']) ? $_POST['access_code'] : die("Access code not found.");
 
 // check if access code exists
 $user->access_code = $access_code;

@@ -53,7 +53,8 @@ var neonResetPassword = neonResetPassword || {};
 							method: 'POST',
 							dataType: 'json',
 							data: {
-								password: $("input#password").val(),
+                                password: $("input#password").val(),
+                                access_code: $("input#access_code").val(),
 							},
 							error: function()
 							{
@@ -64,7 +65,7 @@ var neonResetPassword = neonResetPassword || {};
 								// From response you can fetch the data object retured
                                 var phpRespStatus = response.status;
                                 var phpRespMessage = response.message;
-                                var phpRespEmail = response.email;
+                                var phpRespAccessCode = response.access_code;
                                 
                                 //alert(phpRespStatus);
                                 //alert(phpRespMessage);

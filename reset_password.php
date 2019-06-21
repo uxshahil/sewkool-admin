@@ -13,7 +13,10 @@ include_once "login_checker.php";
  
 // include page header HTML
 include_once "layout_head.php";
- 
+
+// get given access code
+$access_code=isset($_GET['access_code']) ? $_GET['access_code'] : die("Access code not found.");
+
 ?>
 
 <body class="page-body login-page login-form-fall" data-url="http://neon.dev">
@@ -53,7 +56,7 @@ var baseurl = '<?php echo $home_url ?>';
 		
 		<div class="login-content">
 
-            <form method="post" role="form" id="form_reset_password">
+            <form method="post" role="form" id="form_reset_password" >
 				
 				<div class="form-forgotpassword-success">
 					<i class="entypo-check"></i>
@@ -77,6 +80,7 @@ var baseurl = '<?php echo $home_url ?>';
                                 </div>
                                 
                                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
+                                <input type="hidden" class="form-control" name="access_code" id="access_code" value="<?php echo $access_code ?>"/>
                             </div>
 						</div>
 						
