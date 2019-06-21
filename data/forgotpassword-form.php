@@ -47,7 +47,7 @@ if($user->emailExists()){
         if($utils->sendEmailViaPhpMail($send_to_email, $subject, $body))
         {
             $resp['status'] = 0;
-            $resp['message'] = '';
+            $resp['message'] = 'Success: Reset email sent.';
         }
 
         // message if unable to send email for password reset link

@@ -30,7 +30,7 @@ var baseurl = '<?php echo $home_url ?>';
 		
 		<div class="login-content">
 			
-			<a href="index.html" class="logo">
+			<a href="index.php" class="logo">
 				<img src="assets/images/logo@2x.png" width="120" alt="" />
 			</a>
 			
@@ -53,7 +53,7 @@ var baseurl = '<?php echo $home_url ?>';
 		
 		<div class="login-content">
 
-            <?php echo "<form class='form-signin' action='".htmlspecialchars($_SERVER["PHP_SELF"])."' method='post' role='form' id='form_forgot_password'>";?>
+            <form method="post" role="form" id="form_forgot_password">
 				
 				<div class="form-forgotpassword-success">
 					<i class="entypo-check"></i>
