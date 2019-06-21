@@ -292,7 +292,7 @@ class line_item_temp{
             }
 
             // make sure certain file types are allowed
-            $allowed_file_types=array("jpg", "jpeg", "png", "gif");
+            $allowed_file_types=array("jpg", "jpeg", "png", "gif", "JPG", "JPEG", "PNG", "GIF");
             if(!in_array($file_type, $allowed_file_types)){
                 $file_upload_error_messages.="<div>Only JPG, JPEG, PNG, GIF files are allowed</div>";
             }

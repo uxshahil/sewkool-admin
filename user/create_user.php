@@ -148,12 +148,12 @@ if($_POST){
 		<tr>
 			<td>Status</td>
 			<td><input type='text' name='status' class='form-control' /></td>
-		</tr>
-
-		<tr>
-			<td>Image</td>
-			<td><input type='text' name='image' class='form-control' /></td>
-		</tr>
+        </tr>
+        
+        <tr>
+            <td>Image</td>
+            <td><input type='file' name='image' id='image' class='form-control' /></td>
+        </tr>
 
 		<tr>
 			<td colspan="2" height="67px" class="submitButtonCol">

@@ -174,7 +174,7 @@
                     <li <?php echo $nav_title=="Job Card" ? "class='active'" : ""; ?>>
                         <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Job Card</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="<?php echo $home_url;?>job_card_process/verify_quality.php" class="dropdown-toggle">Verify Quantity</a></li>
+                            <li><a href="<?php echo $home_url;?>job_card_process/verify_quantity.php" class="dropdown-toggle">Verify Quantity</a></li>
                         </ul>
                     </li>
                 </ul>

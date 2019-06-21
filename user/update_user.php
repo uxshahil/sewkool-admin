@@ -42,7 +42,6 @@ include_once "layout_header.php";
 if($_POST){
 
     // set user property values
-	$user->id = $_POST['id'];
 	$user->first_name = $_POST['first_name'];
 	$user->last_name = $_POST['last_name'];
 	$user->contact_email = $_POST['contact_email'];
@@ -51,13 +50,21 @@ if($_POST){
 	$user->password = $_POST['password'];
 	$user->access_level = $_POST['access_level'];
 	$user->access_code = $_POST['access_code'];
-	$user->status = $_POST['status'];
+    $user->status = $_POST['status'];
+    
+    $image=!empty($_FILES['image']['name'])
+        ? sha1_file($_FILES['image']['tmp_name']) . "-" . basename($_FILES["image"]["name"]) : "";
+    $user->image = $image;
 
 // update the user
     if($user->update()){
         echo "<div class='alert alert-success alert-dismissable'>";
             echo "User was updated.";
         echo "</div>";
+
+        // try to upload the submitted file
+        // uploadPhoto() method will return an error message, if any.
+        echo $user->updatePhoto();
     }
 
 // if unable to update the user, tell the user
@@ -69,7 +76,7 @@ if($_POST){
 }
 ?>
 
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}");?>" method="post">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}");?>" method="post" enctype="multipart/form-data">
     <table class='table table-hover table-responsive table-bordered box'>
 		
 		<tr>
@@ -158,6 +165,11 @@ if($_POST){
 		<tr>
 			<td>Status</td>
 			<td><input type='text' name='status' value='<?php echo $user->status; ?>' class='form-control' /></td>
+        </tr>
+        
+        <tr>
+			<td>Image</td>			
+			<?php echo ($user->image != "") ? "<td><img src='../images/{$user->image}' style='width:300px;' /> <input type='file' name='image' class='form-control' /> </td>" : "<td><input type='file' name='image' class='form-control' /> </td>"; ?>
 		</tr>
 
 		<tr>
