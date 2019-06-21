@@ -21,7 +21,7 @@ var neonResetPassword = neonResetPassword || {};
 		neonResetPassword.$container.validate({
 			rules: {
 				
-				username: {
+				password: {
 					required: true	
                 },
                 
@@ -53,7 +53,7 @@ var neonResetPassword = neonResetPassword || {};
 							method: 'POST',
 							dataType: 'json',
 							data: {
-								username: $("input#username").val(),
+								password: $("input#password").val(),
 							},
 							error: function()
 							{

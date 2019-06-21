@@ -58,7 +58,7 @@ var baseurl = '<?php echo $home_url ?>';
 				<div class="form-forgotpassword-success">
 					<i class="entypo-check"></i>
 					<h3>Password was reset.</h3>
-					<p>Please <a href='<?php echo $home_url ?>login'>login.</p>
+					<p>Please login.</p>
                 </div>
                 
                 <div class="form-login-error">
