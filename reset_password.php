@@ -122,7 +122,7 @@ var baseurl = '<?php echo $home_url ?>';
 	<script src="assets/js/resizeable.js"></script>
 	<script src="assets/js/neon-api.js"></script>
 	<script src="assets/js/jquery.validate.min.js"></script>
-	<script src="assets/js/neon-forgotpassword.js"></script>
+	<script src="assets/js/neon-resetpassword.js"></script>
 	<script src="assets/js/jquery.inputmask.bundle.js"></script>
 
 	<!-- JavaScripts initializations and stuff -->
