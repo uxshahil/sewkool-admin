@@ -17,7 +17,7 @@ $password = $_POST["password"];
 $resp['submitted_data'] = $_POST;
 
 // core configuration
-include_once "../config/core.php";
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
 
 // include classes
 include_once "../config/database.php";

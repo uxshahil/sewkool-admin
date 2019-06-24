@@ -46,7 +46,7 @@
                 </li>
 
                 <li>
-                    <a href="<?php echo $home_url; ?>job_card_process/index.php">SewKool - App</a>
+                    <a href="<?php echo $home_url; ?>job_card/index.php">SewKool - App</a>
                 </li>
             </ul>
  

@@ -1,6 +1,6 @@
 <!-- navbar -->
 
-    <div class="sidebar-menu">
+    <div class="sidebar-menu fixed">
 
         <div class="sidebar-menu-inner">
                 
@@ -9,7 +9,7 @@
                 <!-- logo -->
                 <div class="logo">
                     <a href="index.html">
-                        <img src="assets/images/logo@2x.png" width="120" alt="" />
+                        <img src="<?php echo $home_url . 'assets/images/logo@2x.png'?>" width="120" alt="" />
                     </a>
                 </div>
 
@@ -40,35 +40,35 @@
 
                         <!-- link to the "Home" page, highlight if current page is index.php -->
                         <li <?php echo $nav_title=="Home" ? "class='active'" : ""; ?>>
-                            <a href="<?php echo $home_url;?>job_card_process/index.php">
+                            <a href="<?php echo $home_url;?>job_card/index.php">
                                 <i class="entypo-gauge"></i>
                                 <span class="title">Home</span>
                             </a>
                         </li>
 
                         <li class="has-sub" <?php echo $nav_title=="Job Card" ? "class='active'" : ""; ?>>
-                            <a href="<?php echo $home_url;?>job_card_process/index.php?>">
+                            <a href="<?php echo $home_url;?>job_card/index.php?>">
                                 <i class="entypo-briefcase"></i>
                                 <span class="title">Job Card</span>
                             </a>
                             <ul>
                                 <li>
-                                    <a href="<?php echo $home_url;?>job_card_process/create_job_card.php">
+                                    <a href="<?php echo $home_url;?>job_card/create_job_card.php">
                                         <span class="title">Create Job Card</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo $home_url;?>job_card_process/index.php">
+                                    <a href="<?php echo $home_url;?>job_card/index.php">
                                         <span class="title">Read / Update Job Card</span>
                                     </a>
                                 </li>   
                                 <li>
-                                    <a href="<?php echo $home_url;?>job_card_process/verify_quantity.php">
+                                    <a href="<?php echo $home_url;?>job_card/verify_quantity.php">
                                         <span class="title">Verify Quantity</span>
                                     </a>
                                 </li>   
                                 <li>
-                                    <a href="<?php echo $home_url;?>job_card_process/assign_user.php">
+                                    <a href="<?php echo $home_url;?>job_card/assign_user.php">
                                         <span class="title">Assign User to Job Card</span>
                                     </a>
                                 </li>      
@@ -144,50 +144,50 @@
 
                         <!-- link to the "Home" page, highlight if current page is index.php -->
                         <li <?php echo $nav_title=="Home" ? "class='active'" : ""; ?>>
-                            <a href="<?php echo $home_url;?>job_card_process/index.php">
+                            <a href="<?php echo $home_url;?>job_card/index.php">
                                 <i class="entypo-gauge"></i>
                                 <span class="title">Home</span>
                             </a>
                         </li>
 
                         <li class="has-sub" <?php echo $nav_title=="Job Card" ? "class='active'" : ""; ?>>
-                            <a href="<?php echo $home_url;?>job_card_process/index.php?>">
+                            <a href="<?php echo $home_url;?>job_card/index.php?>">
                                 <i class="entypo-briefcase"></i>
                                 <span class="title">Job Card</span>
                             </a>
                             <ul>
                                 <li>
-                                    <a href="<?php echo $home_url;?>job_card_process/create_job_card.php">
+                                    <a href="<?php echo $home_url;?>job_card/create_job_card.php">
                                         <span class="title">Create Job Card</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo $home_url;?>job_card_process/index.php">
+                                    <a href="<?php echo $home_url;?>job_card/index.php">
                                         <span class="title">Read / Update Job Card</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo $home_url;?>job_card_process/manage_job_card.php">
+                                    <a href="<?php echo $home_url;?>job_card/manage_job_card.php">
                                         <span class="title">Manage Job Card Status</span>
                                     </a>
                                 </li>   
                                 <li>
-                                    <a href="<?php echo $home_url;?>job_card_process/verify_quantity.php">
+                                    <a href="<?php echo $home_url;?>job_card/verify_quantity.php">
                                         <span class="title">Verify Quantity</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo $home_url;?>job_card_process/verify_quality.php">
+                                    <a href="<?php echo $home_url;?>job_card/verify_quality.php">
                                         <span class="title">Verify Quality</span>
                                     </a>
                                 </li>   
                                 <li>
-                                    <a href="<?php echo $home_url;?>job_card_process/assign_user.php">
+                                    <a href="<?php echo $home_url;?>job_card/assign_user.php">
                                         <span class="title">Assign User to Job Card</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo $home_url;?>job_card_process/export_job_card.php">
+                                    <a href="<?php echo $home_url;?>job_card/export_job_card.php">
                                         <span class="title">Export Job Card</span>
                                     </a>
                                 </li>      
@@ -291,20 +291,20 @@
 
                         <!-- link to the "Home" page, highlight if current page is index.php -->
                         <li <?php echo $nav_title=="Home" ? "class='active'" : ""; ?>>
-                            <a href="<?php echo $home_url;?>job_card_process/index.php">
+                            <a href="<?php echo $home_url;?>job_card/index.php">
                                 <i class="entypo-gauge"></i>
                                 <span class="title">Home</span>
                             </a>
                         </li>
 
                         <li class="has-sub" <?php echo $nav_title=="Job Card" ? "class='active'" : ""; ?>>
-                            <a href="<?php echo $home_url;?>job_card_process/index.php?>">
+                            <a href="<?php echo $home_url;?>job_card/index.php?>">
                                 <i class="entypo-briefcase"></i>
                                 <span class="title">Job Card</span>
                             </a>
                             <ul>
                                 <li>
-                                    <a href="<?php echo $home_url;?>job_card_process/verify_quantity.php">
+                                    <a href="<?php echo $home_url;?>job_card/verify_quantity.php">
                                         <span class="title">Verify Quantity</span>
                                     </a>
                                 </li>
@@ -323,7 +323,7 @@
 
                         <!-- link to the "Home" page, highlight if current page is index.php -->
                         <li <?php echo $nav_title=="Home" ? "class='active'" : ""; ?>>
-                            <a href="<?php echo $home_url;?>job_card_process/index.php">
+                            <a href="<?php echo $home_url;?>job_card/index.php">
                                 <i class="entypo-gauge"></i>
                                 <span class="title">Home</span>
                             </a>

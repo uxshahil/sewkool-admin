@@ -1,6 +1,6 @@
 <?php
 // core configuration
-include_once "config/core.php";
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
 
 // set navigation
 $nav_title = "Dashboard";

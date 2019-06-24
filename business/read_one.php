@@ -3,14 +3,14 @@
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing ID.');
 
 // core.php holds pagination variables
-include_once '../config/core.php';
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
 
 // include database and object files
-include_once '../config/database.php';
-include_once '../objects/business.php';
-include_once '../objects/job_card.php';
-include_once '../objects/invoice.php';
-include_once '../objects/receipt.php';
+include_once $root_dir .'config/database.php';
+include_once $root_dir .'objects/business.php';
+include_once $root_dir .'objects/job_card.php';
+include_once $root_dir .'objects/invoice.php';
+include_once $root_dir .'objects/receipt.php';
 
 // get database connection
 $database = new Database();
@@ -199,7 +199,7 @@ $total_rows = $stmt->rowCount();
 
 // create job_card button
 echo "<div class='right-button-margin'>";
-    echo "<a href='../job_card_process/create_job_card.php' class='btn btn-primary pull-right'>";
+    echo "<a href='../job_card/create_job_card.php' class='btn btn-primary pull-right'>";
         echo "<span class='glyphicon glyphicon-plus'></span> Create job_card";
     echo "</a>";
 echo "</div>";
@@ -226,17 +226,17 @@ if($total_rows>0){
 
                 echo "<td style='text-align: right;'>";
                     // read Job Card button
-                    echo "<a href='../job_card_process/read_one.php?id={$id}' class='btn btn-primary left-margin>";
+                    echo "<a href='../job_card/read_one.php?id={$id}' class='btn btn-primary left-margin>";
                         echo "<span class='glyphicon glyphicon-list'></span> Read";
                     echo "</a>";
 
                     // edit Job Card button
-                    echo "<a href='../job_card_process/update_job_card.php?id={$id}' class='btn btn-info left-margin'>";
+                    echo "<a href='../job_card/update_job_card.php?id={$id}' class='btn btn-info left-margin'>";
                         echo "<span class='glyphicon glyphicon-edit'></span> Edit";
 					echo "</a>";
 	
 					// print Job Card button
-					echo "<a href='../job_card_process/print_job_card.php?id={$id}' class='btn left-margin'>";
+					echo "<a href='../job_card/print_job_card.php?id={$id}' class='btn left-margin'>";
 						echo "<span class='glyphicon glyphicon-print'></span> Print";
 					echo "</a>";
 

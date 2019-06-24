@@ -1,6 +1,6 @@
 <?php
 // core configuration
-include_once "config/core.php";
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
 
 // include database and object files
 include_once 'config/database.php';
@@ -17,7 +17,7 @@ $page_title="Home";
  
 // include login checker
 $require_login=true;
-include_once "login_checker.php";
+include_once $root_dir .'login_checker.php';
  
 // include page header HTML
 include_once 'layout_head.php';

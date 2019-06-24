@@ -1,7 +1,7 @@
 <?php
 
 // core configuration
-include_once "config/core.php";
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
 
 // set navigation
 $nav_title = "Login";
@@ -11,7 +11,7 @@ $page_title = "Login";
  
 // include login checker
 $require_login=false;
-include_once "login_checker.php";
+include_once $root_dir .'login_checker.php';
  
 // default to false
 $access_denied=false;

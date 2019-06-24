@@ -1,18 +1,18 @@
 <?php
 
 // core.php holds pagination variables: includes session_start();
-include_once '../config/core.php'; 
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php'; 
 
 // inlcude database and object files
-include_once '../config/database.php';
-include_once '../objects/job_card.php';
-include_once '../objects/status.php';
-include_once '../objects/business.php';
-include_once '../objects/invoice.php';
-include_once '../objects/line_item_temp.php';
-include_once '../objects/line_item.php';
-include_once '../objects/status_history.php';
-include_once '../objects/lookup.php';
+include_once $root_dir .'config/database.php';
+include_once $root_dir .'objects/job_card.php';
+include_once $root_dir .'objects/status.php';
+include_once $root_dir .'objects/business.php';
+include_once $root_dir .'objects/invoice.php';
+include_once $root_dir .'objects/line_item_temp.php';
+include_once $root_dir .'objects/line_item.php';
+include_once $root_dir .'objects/status_history.php';
+include_once $root_dir .'objects/lookup.php';
 
 //get databse connection
 $database = new Database();

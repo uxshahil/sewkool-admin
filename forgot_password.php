@@ -1,6 +1,6 @@
 <?php
 // core configuration
-include_once "config/core.php";
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
 
 // set navigation
 $nav_title = "Forgot Password";
@@ -9,7 +9,7 @@ $nav_title = "Forgot Password";
 $page_title = "Forgot Password";
  
 // include login checker
-include_once "login_checker.php";
+include_once $root_dir .'login_checker.php';
  
 // include page header HTML
 include_once "layout_head.php";

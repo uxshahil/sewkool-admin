@@ -2,3 +2,4 @@
 core.php
 database.php
 /images
+*.original.php

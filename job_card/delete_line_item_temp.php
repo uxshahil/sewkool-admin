@@ -1,14 +1,14 @@
 <?php
 
 // core.php holds pagination variables: includes session_start();
-include_once '../config/core.php'; 
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php'; 
 
 // check if value was posted
 if($_POST){
 
     // include database and object file
-    include_once '../config/database.php';
-    include_once '../objects/line_item_temp.php';
+    include_once $root_dir .'config/database.php';
+    include_once $root_dir .'objects/line_item_temp.php';
 
     // get database connection
     $database = new Database();

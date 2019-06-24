@@ -3,11 +3,11 @@
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing ID.');
 
 // core.php holds pagination variables
-include_once '../config/core.php';
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
 
 // include database and object files
-include_once '../config/database.php';
-include_once '../objects/status.php';
+include_once $root_dir .'config/database.php';
+include_once $root_dir .'objects/status.php';
 
 // get database connection
 $database = new Database();

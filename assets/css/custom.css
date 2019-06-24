@@ -7,3 +7,14 @@
 body {
 	
 }
+
+.btn-default.btn-icon.btn-sm.icon-left {
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+@media screen and (min-width: 768px) {
+    .page-container .sidebar-menu.fixed .sidebar-menu-inner {
+        top: 0;
+    }
+  }

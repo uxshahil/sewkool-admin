@@ -1,6 +1,6 @@
 <?php
 // core configuration
-include_once "config/core.php";
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
 
 // set navigation
 $nav_title = "Register";
@@ -9,7 +9,7 @@ $nav_title = "Register";
 $page_title = "Register";
  
 // include login checker
-include_once "login_checker.php";
+include_once $root_dir .'login_checker.php';
  
 // include classes
 include_once 'config/database.php';

@@ -1,12 +1,12 @@
 <?php
 
 // core.php holds pagination variables
-include_once '../config/core.php';
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
 
 // inlcude database and object files
-include_once '../config/database.php';
-include_once '../objects/business.php';
-include_once '../objects/status.php';
+include_once $root_dir .'config/database.php';
+include_once $root_dir .'objects/business.php';
+include_once $root_dir .'objects/status.php';
 
 //get databse connection
 $database = new Database();
@@ -25,8 +25,8 @@ include_once "layout_header.php";
 
 $action = isset($_GET['action']) ? $_GET['action'] : "";
 
-if($action=='from_job_card_process'){
-	$redirect = "../job_card_process/create_customer.php";
+if($action=='from_job_card'){
+	$redirect = "../job_card/create_customer.php";
 }
 else
 {

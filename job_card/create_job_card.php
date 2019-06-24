@@ -1,14 +1,16 @@
 <?php
 
-// core.php holds pagination variables
-include_once '../config/core.php';
+// core.php holds pagination variables: includes session_start();
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php'; 
 
 // inlcude database and object files
-include_once '../config/database.php';
-include_once '../objects/job_card.php';
-include_once '../objects/status.php';
-include_once '../objects/business.php';
-include_once '../objects/invoice.php';
+include_once $root_dir .'config/database.php';
+include_once $root_dir .'objects/job_card.php';
+include_once $root_dir .'objects/status.php';
+include_once $root_dir .'objects/business.php';
+include_once $root_dir .'objects/invoice.php';
+include_once $root_dir .'objects/line_item_temp.php';
+include_once $root_dir .'objects/lookup.php';
 
 //get databse connection
 $database = new Database();
@@ -19,6 +21,8 @@ $job_card = new Job_Card($db);
 $status = new Status($db);
 $business = new Business($db);
 $invoice = new Invoice($db);
+$line_item_temp = new Line_Item_Temp($db);
+$lookup = new Lookup($db);
 
 // set navigation
 $nav_title = "Job Card";
@@ -27,65 +31,100 @@ $nav_title = "Job Card";
 $page_title = "Create Job Card";
 include_once "layout_header.php";
 
-echo "<div class ='right-button-margin'>";
-    echo "<a href='index.php' class='btn btn-default pull-right'>Read Job_Cards</a>";
-echo "</div>";
-?>
+$action = isset($_GET['action']) ? $_GET['action'] : "";
 
-<?php
-// if the form was submitted - PHP OOP CRUD Tutorial
-if($_POST){
+if($action=='removed')
+{
     
-    // set Job Card property values
-	$job_card->client_business_id = $_POST['client_business_id'];
-	$job_card->customer_business_id = $_POST['customer_business_id'];
-    $job_card->client_invoice_number = $_POST['client_invoice_number'];
-    $job_card->skip_artwork = $_POST['skip_artwork'];
-    $job_card->qty_verify_customer = $_POST['qty_verify_customer'];
+    ?>
+        <script type='text/javascript'>
+            jQuery(document).ready(function($) { 
+                toastr.info('Line Item was removed from your Job Card!'); 
+            });
+        </script>
+    <?php
     
-    // set invoice property values
-    $invoice->invoice_number = $_POST['invoice_number'];
-	$invoice->job_card_id = $_POST['job_card_id'];
-    $invoice->date_due = $_POST['date_due'];
-	$invoice->total_invoiced = $_POST['total_invoiced'];
-    $invoice->invoice_status_id = $_POST['invoice_status_id'];
-
-    // create the Job Card
-    if($job_card->create()){
-
-        // create the invoice
-        if($invoice->create()){
-            echo "<div class='alert alert-success'>Job Card was created.</div>";
-        }
-
-        // if unable to create the invoice, tell the user
-        else {
-            echo "<div class='alert alert-danger'>Unable to create job card.</div>";
-            exit;
-        }
-        
-    }
-
-    // if unable to create the Job Card, tell the user
-    else {
-        echo "<div class='alert alert-danger'>Unable to create job card.</div>";
-    }
 }
+
+else if($action=='line_item_added')
+{
+
+    ?>
+        <script type='text/javascript'>
+            jQuery(document).ready(function($) { 
+                toastr.info('"Line Item was added to your Job Card!'); 
+            });
+        </script>
+    <?php
+
+}
+
+else if($action=='error')
+{
+
+    ?>
+        <script type='text/javascript'>
+            jQuery(document).ready(function($) { 
+                toastr.info('"Line Item did not add!'); 
+            });
+        </script>
+    <?php
+
+}
+
+else if($action=='job_card_added')
+{
+    
+    ?>
+        <script type='text/javascript'>
+            jQuery(document).ready(function($) { 
+                toastr.info('Job Card added!'); 
+            });
+        </script>
+    <?php
+    
+}
+
+else if($action=='job_card_error')
+{
+    
+    ?>
+        <script type='text/javascript'>
+            jQuery(document).ready(function($) { 
+                toastr.info('Job Card error!'); 
+            });
+        </script>
+    <?php
+    
+}
+
+else if($action=='business_added')
+{
+    
+    ?>
+        <script type='text/javascript'>
+            jQuery(document).ready(function($) { 
+                toastr.info('Business added!'); 
+            });
+        </script>
+    <?php
+    
+}
+
 ?>
 
 <!-- HTML form for creating a Job Card -->
 
-<form name="job_card_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
+<form name="create_job_card" action="create_job_card_w_line_items.php" method="post" enctype="multipart/form-data">
 
     <table class='table table-hover table-responsive table-bordered box'>
 
-	<!-- <tr>
-		<td>Client Business ID</td>
-		<td><input type='text' name='client_business_id' class='form-control'/></td>
-	</tr> -->
+    <tr>
+		<td colspan="2" class="tableSubHeader" height="63px">Job Card</td>
+	</tr>
 
     <tr>
-        <td>Client Business</td>
+        <td>Client Business *<span class="glyphicon glyphicon-plus primary-color m-l-10px" onclick="addCustomer();"></span></td>
         <td>
         
         <?php
@@ -93,7 +132,7 @@ if($_POST){
         $stmt = $business->read();
         
         // put them in a select drop-down
-        echo "<select class='form-control' name='client_business_id'>";
+        echo "<select id='client_business_id' class='form-control' name='client_business_id' required>";
             echo "<option>Select business...</option>";
 
             while ($row_business = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -103,12 +142,12 @@ if($_POST){
 
         echo "</select>";
         ?>
-
+ 	    
         </td>
     </tr>
 
     <tr>
-        <td>Customer Business</td>
+        <td>Customer Business<span class="glyphicon glyphicon-plus primary-color m-l-10px" onclick="addCustomer();"></span></td>
         <td>
         
         <?php
@@ -116,8 +155,8 @@ if($_POST){
         $stmt = $business->read();
         
         // put them in a select drop-down
-        echo "<select class='form-control' name='customer_business_id'>";
-            echo "<option>(optional) Select business...</option>";
+        echo "<select id='customer_business_id' class='form-control' name='customer_business_id'>";
+            echo "<option value='0'>(optional) Select business...</option>";
 
             while ($row_business = $stmt->fetch(PDO::FETCH_ASSOC)){
                 extract($row_business);
@@ -131,80 +170,282 @@ if($_POST){
     </tr>
 
     <tr>
-		<td>Invoice Number</td>
-		<td><input type='text' name='invoice_number' class='form-control' /></td>
-	</tr>
-
-	<tr>
-		<td>Job Card ID</td>
-		<td><input type='text' name='job_card_id' class='form-control' /></td>
-	</tr>
+		<td>Quantity - Customer *</td>
+		<td><input type='text' id='qty_verify_customer' name='qty_verify_customer' class='form-control' required/></td>
+    </tr>
 
     <tr>
-		<td>Date Due</td>
-		<td><input type='date' name='date_due' class='form-control' /></td>
-	</tr>
-
-	<tr>
-		<td>Total - Invoiced</td>
-		<td><input type='text' name='total_invoiced' value='0' class='form-control' /></td>
-	</tr>
-
-	<tr>
-		<td>Invoice Status</td>
+        <td>Job Type *</td>
 		<td>
-		
-		<?php
-		// read the product categories from the database
-		$stmt = $status->readParentStatus('Invoice', 'invoice_status_id');
+            <?php
+            // read the product categories from the database
+            $stmt = $lookup->readCollection("sew_job_type");
 
-		// put them in a select drop-down
-		echo "<select class='form-control' name='invoice_status_id'>";
-			echo "<option value=''>Select payment status...</option>";
+            // put them in a select drop-down
+            echo "<select id='job_type_id' class='form-control' name='job_type_id'>";
 
-			while ($row_status = $stmt->fetch(PDO::FETCH_ASSOC)){
-				extract($row_status);
-				echo "<option value='{$id}'>{$title}</option>";
-			}
+                while ($row_job_type = $stmt->fetch(PDO::FETCH_ASSOC)){
+                    extract($row_job_type);
 
-		echo "</select>";
-		?>
+                    // current status of the invoice must be selected
+                    if($title == "Embroidery"){
+                        echo "<option value='$id' selected/> $title ";
+                    } else {
+                        echo "<option value='$id' /> $title ";
+                    }
 
+                }
+
+            echo "</select>";
+            ?>
 		</td>
 	</tr>
 
     <tr>
-        <td>Client Order Number</td>
-        <td><input type='text' name='client_invoice_number' class='form-control'/></td>
-    </tr>
-
-    <tr>
-        <td>Skip Artwork Phase</td>
+		<td>Enforce Deadline *</td>
         <td>
-            <select class='form-control' name='skip_artwork'>
+            <select class='form-control' id='deadline_enforce' name='deadline_enforce' required>
                 <option value='0' selected>No</option>
                 <option value='1'>Yes</option>
             </select>
         </td>
+	</tr>
+
+	<tr>
+		<td>Deadline Date *</td>
+        <td><input type='date' id='deadline_date' name='deadline_date' class='form-control' required/></td>
+	</tr>
+
+    <tr>
+        <td>Priority *</td>
+		<td>
+            <?php
+            
+                // read the product categories from the database
+                $stmt = $lookup->readCollection("priority");
+
+                while ($row_priority = $stmt->fetch(PDO::FETCH_ASSOC)){
+                    extract($row_priority);
+
+                    // current status of the invoice must be selected
+                    if($title == "Normal"){
+                        echo "<input id='priority_id_default' type='radio' name='priority_id' value='$id' checked/> $title ";
+                    } else {
+                        echo "<input type='radio' name='priority_id' value='$id' /> $title ";
+                    }
+                    
+                }
+
+            ?>
+		</td>
+	</tr>
+    
+    <tr>
+		<td>Skip Artwork Phase *</td>
+        <td>
+            <select class='form-control' id='skip_artwork' name='skip_artwork' required>
+                <option value='0' selected>No</option>
+                <option value='1'>Yes</option>
+            </select>
+        </td>
+	</tr>
+
+    <tr>
+		<td colspan="2" class="tableSubHeader" height="63px">Invoice</td>
+	</tr>
+
+    <tr>
+		<td>Invoice: Date Due *</td>
+        <td><input type='date' id='date_due' name='date_due' class='form-control' required/></td>
+	</tr>
+
+	<tr>
+		<td>Total - Invoiced *</td>
+		<td><input type='text' id='total_invoiced' name='total_invoiced' class='form-control' value='0.00' readonly='readonly') ?></td>
     </tr>
 
     <tr>
-		<td>Quantity - Customer</td>
-		<td><input type='text' id='qty_verify_customer' name='qty_verify_customer' class='form-control' /></td>
+		<td colspan="2" class="tableSubHeader" height="63px">Client Reference</td>
 	</tr>
 
-        <tr>
-            <td></td>
-            <td>
-                <button type="submit" class="btn btn-primary">Create</button>
-            </td>
-        </tr>
+    <tr>
+		<td>Client Order Number</td>
+		<td><input type='text' id='client_invoice_number' name='client_invoice_number' class='form-control' /></td>
+	</tr>
 
     </table>
 </form>
 
 <?php
 
+// check database for existing temporary line items
+$total = $line_item_temp->countAll();
+
+if($total>0){
+    $item_count = 1;
+    $stmt=$line_item_temp->read();
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+        extract($row);
+
+        echo "<h2 id='header{$item_count}'>Goods Received - {$item_count}</h2>";
+
+        echo "<table class='table table-hover table-responsive table-bordered box'>";
+
+            echo "<tr>";
+                echo "<td colspan='2' class='tableSubHeader' height='63px'>Item</td>";
+            echo "</tr>";
+
+            echo "<tr>";
+                echo "<td>Item</td>";
+                echo "<td><input type='text' name='item' id='item_{$item_count}' value='{$item}' class='form-control' readonly='readonly'/>";
+                echo "</td>";
+            echo "</tr>";
+    
+            echo "<tr>";
+                echo "<td>Item - Quantity</td>";
+                echo "<td><input type='text' name='item_qty' id='item_qty_{$item_count}' value='{$item_qty}' class='form-control' readonly='readonly'/></td>";
+            echo "</tr>";
+
+            echo "<tr>";
+                echo "<td colspan='2' class='tableSubHeader' height='63px'>Artwork</td>";
+            echo "</tr>";
+    
+            echo "<td>Artwork - Logo</td>";
+            echo "<td>";
+                echo $artwork_logo ? "<img readonly='readonly' src='../images/{$artwork_logo}' style='width:300px;' />" : "No image found.";
+            echo "</td>";
+    
+            echo "<tr>";
+                echo "<td>Artwork - Position</td>";
+                echo "<td><input type='text' name='artwork_position' id='artwork_position_{$item_count}' value='{$artwork_position}' class='form-control' readonly='readonly'/></td>";
+            echo "</tr>";
+    
+            echo "<tr>";
+                echo "<td>Artwork - Color</td>";
+                echo "<td><input type='text' name='artwork_color' id='artwork_color_{$item_count}' value='{$artwork_color}' class='form-control' readonly='readonly'/></td>";
+            echo "</tr>";
+    
+            echo "<tr>";
+                echo "<td>Other Info</td>";
+                echo "<td><input type='text' name='other_info' id='other_info_{$item_count}' value='{$other_info}' class='form-control' readonly='readonly'/></td>";
+            echo "</tr>";
+
+            echo "<tr>";
+                echo "<td colspan='2' class='tableSubHeader' height='63px'>Price</td>";
+            echo "</tr>";
+    
+            echo "<tr>";
+                echo "<td>Price - Artwork</td>";
+                echo "<td><input type='text' name='price_artwork' id='price_artwork_{$item_count}' value='{$price_artwork}' class='form-control' readonly='readonly'/></td>";
+            echo "</tr>";
+    
+            echo "<tr>";
+                echo "<td>Price - Setup</td>";
+                echo "<td><input type='text' name='price_setup' id='price_setup_{$item_count}' value='{$price_setup}' class='form-control' readonly='readonly'/></td>";
+            echo "</tr>";
+
+            echo "<tr>";
+                echo "<td>Price - Embroidery</td>";
+                echo "<td><input type='text' name='price_embroidery' id='price_embroidery_{$item_count}' value='{$price_embroidery}' class='form-control 'readonly='readonly'/></td>";
+            echo "</tr>";
+
+            echo "<tr>";
+                echo "<td>Price - Sub Total</td>";
+                echo "<td><input type='text' name='price_sub_total' id='price_sub_total_{$item_count}' value='0.00' class='form-control' readonly='readonly'/></td>";
+            echo "</tr>";
+    
+            echo "<tr>";
+                echo "<td colspan='2' class='submitButtonCol'>";
+                    // delete line_item button
+                    echo "<a delete-id='{$id}' class='btn btn-danger delete-object btn-block'>";
+                        echo "<span class='glyphicon glyphicon-remove'</span> Delete";
+                    echo "</a>";
+                echo "</td>";
+            echo "</tr>";
+    
+        echo "</table>";
+        $item_count += 1;
+    }
+}   
+
+?>
+
+<form id="add_to_job_card" action="add_to_job_card.php" method="post" enctype="multipart/form-data" class="m-b-20px">
+
+    <h2>Goods Received</h2>
+
+    <table class='table table-hover table-responsive table-bordered box'>
+        <tr>
+            <td colspan='2' class='tableSubHeader' height='63px'>Item</td>
+        </tr>
+
+        <tr>
+            <td>Item (Shirt, Cap, Jersey, etc)</td>
+            <td><input type='text' name='item' id='item' class='form-control' required/></td>
+        </tr>
+
+        <tr>
+            <td>Quantity</td>
+            <td><input type='text' name='item_qty' id='item_qty' class='form-control' oninput='calculateSubTotal()' value='0' required/></td>
+        </tr>
+
+        <tr>
+            <td colspan='2' class='tableSubHeader' height='63px'>Artwork</td>
+        </tr>
+
+        <tr>
+            <td>Artwork - Logo</td>
+            <td><input type='file' name='artwork_logo' id='artwork_logo' class='form-control' /></td>
+        </tr>
+
+        <tr>
+            <td>Artwork - Position</td>
+            <td><input type='text' name='artwork_position' id='artwork_position' class='form-control' /></td>
+        </tr>
+
+        <tr>
+            <td>Artwork - Color</td>
+            <td><input type='text' name='artwork_color' id='artwork_color' class='form-control' /></td>
+        </tr>
+
+        <tr>
+            <td>Other Info</td>
+            <td><input type='text' name='other_info' id='other_info' class='form-control' /></td>
+        </tr>
+
+        <tr>
+            <td colspan='2' class='tableSubHeader' height='63px'>Price</td>
+        </tr>
+
+        <tr>
+            <td>Price - Artwork</td>
+            <td><input type='text' name='price_artwork' id='price_artwork' class='form-control' oninput='calculateSubTotal()' value='0' <?php echo (($_SESSION['access_level']!="Admin") ? " readonly='readonly'" : "") ?>/></td>
+        </tr>
+
+        <tr>
+            <td>Price - Setup</td>
+            <td><input type='text' name='price_setup' id='price_setup' class='form-control' oninput='calculateSubTotal()' value='0' <?php echo (($_SESSION['access_level']!="Admin") ? " readonly='readonly'" : "") ?>/></td>
+        </tr>
+
+        <tr>
+            <td>Price - Per Embroidery</td>
+            <td><input type='text' name='price_embroidery' id='price_embroidery' class='form-control' oninput='calculateSubTotal()' value='0' <?php echo (($_SESSION['access_level']!="Admin") ? " readonly='readonly'" : "") ?>/></td>
+        </tr>
+
+       	<tr>
+            <td colspan="2" height="67px" class="submitButtonCol"><button type="submit" class="btn btn-primary btn-block submitButton" onClick="setCookie()">Add</button></td>
+        </tr>
+
+    </table>
+</form>
+
+<div class="w-100-pct m-b-40px">
+    <button id="jobCardSubmit" disabled class="btn btn-primary btn-block submitButtonJobCard" onClick="createJobCard()">save job card
+    </button>
+</div>
+
+<?php
 // footer 
 include_once "layout_footer.php";
 ?>

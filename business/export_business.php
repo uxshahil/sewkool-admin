@@ -1,8 +1,8 @@
 <?php
 
 // inlcude database and object files
-include_once '../config/database.php';
-include_once '../objects/business.php';
+include_once $root_dir .'config/database.php';
+include_once $root_dir .'objects/business.php';
 
 //get databse connection
 $database = new Database();

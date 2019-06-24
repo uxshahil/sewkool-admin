@@ -144,7 +144,7 @@ function createJobCard() {
 // Add customer process, redirects back to job card process after customer add 
 function addCustomer() {
 
-    window.location = "../business/create_business.php?action=from_job_card_process";
+    window.location = "../business/create_business.php?action=from_job_card";
 
 }
 

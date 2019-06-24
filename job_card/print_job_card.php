@@ -4,15 +4,15 @@
 $id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing ID.');
 
 // core.php holds pagination variables
-include_once '../config/core.php';
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
 
 // include database and object files
-include_once '../config/database.php';
-include_once '../objects/job_card.php';
-include_once '../objects/status.php';
-include_once '../objects/business.php';
-include_once '../objects/invoice.php';
-include_once '../objects/line_item.php';
+include_once $root_dir .'config/database.php';
+include_once $root_dir .'objects/job_card.php';
+include_once $root_dir .'objects/status.php';
+include_once $root_dir .'objects/business.php';
+include_once $root_dir .'objects/invoice.php';
+include_once $root_dir .'objects/line_item.php';
 
 // get database connection
 $database = new Database();
@@ -344,7 +344,7 @@ $page_title = "Print Job Card";
 				<tr>
 					<td colspan="12" style="text-align:center;">
 						<form action="generate_pdf.php" display="hidden" method="post">
-							<?php $urlWrite = 'https://dev.themidastouch.co.za/sewkool-admin/job_card_process/print_job_card.php?id=' . $job_card->id; ?>
+							<?php $urlWrite = 'https://dev.themidastouch.co.za/sewkool-admin/job_card/print_job_card.php?id=' . $job_card->id; ?>
 						
 							<input type="hidden" name="url" value="<?php echo $urlWrite ?>">
 							<input type="hidden" name="filename" value="<?php echo "JOBCARD-" .$job_card->id . ".pdf" ?>">

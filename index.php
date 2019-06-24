@@ -1,9 +1,9 @@
 <?php
 // core configuration
-include_once "config/core.php";
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
 
 // include database and object files
-include_once 'config/database.php';
+include_once $root_dir .'config/database.php';
 
 // instantiate database and objects
 $database = new Database();
@@ -17,7 +17,7 @@ $page_title="Home";
  
 // include login checker
 $require_login=true;
-include_once "login_checker.php";
+include_once $root_dir ."login_checker.php";
  
 // include page header HTML
 include_once 'layout_head.php';
@@ -62,64 +62,12 @@ else if($action=='already_logged_in')
 
 <div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 
-    <?php include_once 'navigation.php' ?>
+    <?php include_once $root_dir .'navigation.php' ?>
 
 	<div class="main-content">
-				
-		<div class="row">
-		
-			<!-- Profile Info and Notifications -->
-			<div class="col-md-6 col-sm-8 clearfix">
-		
-				<ul class="user-info pull-left pull-none-xsm">
-		
-					<!-- Profile Info -->
-					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
-        
-                        <?php include_once 'user/user_widget.php'; ?>
-
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="images/<?php echo $user->image ?>" alt="" class="img-circle" width="44" />
-							<?php echo $user->first_name . " " . $user->last_name; ?>
-						</a>
-		
-						<ul class="dropdown-menu">
-		
-							<!-- Reverse Caret -->
-							<li class="caret"></li>
-		
-							<!-- Profile sub-links -->
-							<li>
-								<a href="user/update_user.php?id=<?php echo $user->id ?>">
-									<i class="entypo-user"></i>
-									Edit Profile
-								</a>
-							</li>
-		
-						</ul>
-					</li>
-		
-				</ul>
-		
-			</div>
-		
-		
-			<!-- Raw Links -->
-			<div class="col-md-6 col-sm-4 clearfix hidden-xs">
-		
-				<ul class="list-inline links-list pull-right">
-		
-					<li>
-						<a href="<?php echo $home_url; ?>logout.php">
-							Log Out <i class="entypo-logout right"></i>
-						</a>
-					</li>
-				</ul>
-		
-			</div>
-		
-		</div>
-		
+    
+        <?php include_once $root_dir .'user/profile_info.php'; ?>
+    		
 		<hr />
 		
 		<script type="text/javascript">

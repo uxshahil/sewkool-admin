@@ -1,9 +1,9 @@
 <?php
 // core configuration
-include_once "../config/core.php";
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
  
 // check if logged in as admin
-include_once "login_checker.php";
+include_once $root_dir ."login_checker.php";
  
 // set page title
 $page_title="Admin Index";

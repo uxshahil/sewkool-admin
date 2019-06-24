@@ -3,8 +3,8 @@
 if($_POST){
 
     // include database and object file
-    include_once '../config/database.php';
-    include_once '../objects/status_history.php';
+    include_once $root_dir .'config/database.php';
+    include_once $root_dir .'objects/status_history.php';
 
     // get database connection
     $database = new Database();

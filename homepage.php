@@ -1,7 +1,7 @@
 <?php
 
 // core.php holds pagination variables
-include_once "config/core.php";
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
 
 // include database and object files
 include_once 'config/database.php';

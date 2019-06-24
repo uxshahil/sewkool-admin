@@ -1,13 +1,13 @@
 <?php
 // core configuration
-include_once "../config/core.php";
+include_once '/Users/admin/Sites/wamp64/www/sewkool-admin/config/core.php';
  
 // check if logged in as admin
-include_once "login_checker.php";
+include_once $root_dir .'login_checker.php';
  
 // include classes
-include_once '../config/database.php';
-include_once '../objects/user.php';
+include_once $root_dir .'config/database.php';
+include_once $root_dir .'objects/user.php';
  
 // get database connection
 $database = new Database();
