@@ -188,7 +188,7 @@ class report{
                         )
                     AND
                         (
-							parent_id <> 4
+							(parent_id <> 4) OR (s.title = 'Complete') OR (s.title = 'Signed-Off')
                         ) 
                     ORDER BY
                         deadline_enforce DESC, deadline_date ASC;";
@@ -237,7 +237,7 @@ class report{
                         AND
 
                         (
-							parent_id <> 4
+							(parent_id <> 4) OR (s.title = 'Complete') OR (s.title = 'Signed-Off')
                         ) 
 
                     ORDER BY
@@ -275,7 +275,7 @@ class report{
                         )
                     AND
                         (
-							parent_id <> 4
+							(parent_id <> 4) OR (s.title = 'Complete') OR (s.title = 'Signed-Off')
                         ) 
                     ORDER BY
                         deadline_enforce DESC, deadline_date ASC;";
