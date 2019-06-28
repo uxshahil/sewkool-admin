@@ -167,18 +167,21 @@ class report{
                         
                         DATEDIFF(deadline_date,CURDATE()) AS 'Days Left'
                         
-                        
                     FROM 
                         Job_Card j
+
                     LEFT JOIN  
                         Business b
                             ON j.client_business_id = b.id
+
                     LEFT JOIN
                         Business bb
                             ON j.customer_business_id = bb.id
+
                     LEFT JOIN 
                         Status s
                             ON j.job_card_status_id = s.id
+
                     WHERE 
                         ( 
                             ((DATEDIFF(deadline_date, CURDATE())) -
@@ -186,10 +189,17 @@ class report{
                             (case when weekday(deadline_date) = 6 then 1 else 0 end) -
                             (case when weekday(CURDATE()) = 5 then 1 else 0 end)) <= 0 
                         )
+
                     AND
                         (
-							(parent_id <> 4) AND (s.title <> 'Complete') OR (s.title <> 'Signed-Off')
-                        ) 
+							parent_id <> 4
+                        )
+
+                    AND
+                        (
+                            (s.title <> 'Complete' OR 'Signed-Off')
+                        )
+
                     ORDER BY
                         deadline_enforce DESC, deadline_date ASC;";
         }
@@ -216,8 +226,7 @@ class report{
                     LEFT JOIN 
                         Status s
                             ON j.job_card_status_id = s.id
-                    WHERE 
-                        
+                    WHERE   
                         ( 
                             ((DATEDIFF(deadline_date, CURDATE())) -
                             ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
@@ -225,8 +234,7 @@ class report{
                             (case when weekday(CURDATE()) = 5 then 1 else 0 end)) > 0 
                         )  
                         
-                        AND 
-                        
+                        AND
                         ( 
                             ((DATEDIFF(deadline_date, CURDATE())) -
                             ((WEEK(deadline_date) - WEEK(CURDATE())) * 2) -
@@ -235,9 +243,13 @@ class report{
                         )
 
                         AND
-
                         (
-							(parent_id <> 4) AND (s.title <> 'Complete') OR (s.title <> 'Signed-Off')
+							parent_id <> 4
+                        )
+
+                        AND
+                        (
+                            (s.title <> 'Complete' OR 'Signed-Off')
                         ) 
 
                     ORDER BY
@@ -257,15 +269,19 @@ class report{
                         
                     FROM 
                         Job_Card j
+
                     LEFT JOIN  
                         Business b
                             ON j.client_business_id = b.id
+
                     LEFT JOIN
                         Business bb
                             ON j.customer_business_id = bb.id
+
                     LEFT JOIN 
                         Status s
                             ON j.job_card_status_id = s.id
+
                     WHERE 
                         ( 
                             ((DATEDIFF(deadline_date, CURDATE())) -
@@ -273,10 +289,17 @@ class report{
                             (case when weekday(deadline_date) = 6 then 1 else 0 end) -
                             (case when weekday(CURDATE()) = 5 then 1 else 0 end)) > 5
                         )
+
                     AND
-                        (
-							(parent_id <> 4) AND (s.title <> 'Complete') OR (s.title <> 'Signed-Off')
-                        ) 
+                    (
+                        parent_id <> 4
+                    )
+
+                    AND
+                    (
+                        (s.title <> 'Complete' OR 'Signed-Off')
+                    ) 
+                        
                     ORDER BY
                         deadline_enforce DESC, deadline_date ASC;";
         }      
