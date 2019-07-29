@@ -49,7 +49,7 @@ $s = isset($_GET['s']) ? $_GET['s'] : "";
                 'pdfHtml5',
                 'print'
             ],
-            "lengthMenu": [[ 50, 10, 25, -1 ], [ 50, 10, 25, "All" ]]
+            "lengthMenu": [[ -1, 50, 10, 25 ], [ "All", 50, 10, 25 ]]
         } );
         
         // Initalize Select Dropdown after DataTables is created
