@@ -17,6 +17,10 @@ $status = new Status($db);
 // set navigation
 $nav_title = "Job Card";
 
+// include login checker
+$require_login=true;
+include_once $root_dir ."login_checker.php";
+
 // set page header
 $page_title = "Read Job Card";
 include_once "layout_header.php";

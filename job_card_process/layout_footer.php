@@ -1,8 +1,14 @@
 </div>
     <!-- /container -->
- 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../libs/vendor/js/jquery-3.2.1.min.js"></script>
+
+<!-- Imported styles on this page -->
+<link rel="stylesheet" href="../libs/js/datatables/datatables.css">
+<link rel="stylesheet" href="../libs/js/select2/select2-bootstrap.css">
+<link rel="stylesheet" href="../libs/js/select2/select2.css">
+
+<!-- Imported scripts on this page -->
+<script src="../libs/js/datatables/datatables.js"></script>
+<script src="../libs/js/select2/select2.min.js"></script>
  
 <!-- Latest compiled and minified Bootstrap JavaScript -->
 <script src="../libs/vendor/js/bootstrap-3.3.7.min.js"></script>

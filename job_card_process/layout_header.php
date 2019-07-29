@@ -30,6 +30,9 @@
 
     <!-- link to barcode js library -->
     <script src="../libs/vendor/js/JsBarcode.all.min.js"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../libs/vendor/js/jquery-3.2.1.min.js"></script>
   
 </head>
 <body>
